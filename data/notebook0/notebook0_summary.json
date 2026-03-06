@@ -1,0 +1,63 @@
+{
+  "experiment_1": {
+    "mean_critical_sigma_80pct": 0.1650731291718931,
+    "range_min": 0.07023389483177692,
+    "range_max": 0.5,
+    "threshold_spread": 0.3804314157807362,
+    "distribution_spread": 0.0037487105360809736,
+    "n_principles_spread": 0.05250321116930812
+  },
+  "experiment_2a": {
+    "critical_disagreement_mean": 0.2702682165655084,
+    "critical_disagreement_lo": 0.2397846625539909,
+    "critical_disagreement_hi": 0.30385111914568536
+  },
+  "experiment_2c": {
+    "critical_range_mean": 0.3627927227701935,
+    "critical_range_lo": 0.3437618529350001,
+    "critical_range_hi": 0.38264677224460014
+  },
+  "experiment_3": {
+    "balanced_conflict_det_mean": 0.7684333333333332,
+    "aligned_det_mean": 1.0,
+    "random_det_mean": 0.8623
+  },
+  "experiment_4": {
+    "berman_det": 0.8689333333333332,
+    "hart_hierarchical_det": 0.6782999999999999,
+    "advantage_hierarchical": 0.19063333333333332,
+    "advantage_consensus_50": 0.33123333333333327,
+    "advantage_consensus_70": 0.8197333333333332
+  },
+  "experiment_5": {
+    "epistemic_sigma_mean": 0.0721805031455076,
+    "aleatory_sigma_panel_mean": 0.08608497638345344,
+    "aleatory_sigma_pairwise_mean": 0.2436125506417226,
+    "aleatory_epistemic_ratio_panel": 1.1926347508262172,
+    "aleatory_epistemic_ratio_pairwise": 3.3750464464154217,
+    "structural_tf_uncalibrated": 0.66275,
+    "structural_tf_calibrated": 0.7728333333333334
+  },
+  "experiment_7": {
+    "tradeoff_correlation": -0.07738418130717668,
+    "min_det": 0.77275,
+    "max_det": 0.9152500000000001,
+    "min_crit": 0.07102797018820092,
+    "max_crit": 0.08473388250750999
+  },
+  "experiment_8": {
+    "independent_sigma": 0.07137051572605878,
+    "category_correlated_sigma": 0.14079509055759049,
+    "fully_correlated_sigma": 0.5,
+    "correlation_improvement_ratio": 1.972734666763567
+  },
+  "experiment_9": {
+    "cardinal_sigma_mean": 0.0721805031455076,
+    "ordinal_sigma_mean": 0.021584969240582168,
+    "cardinal_ordinal_ratio": 3.3440169564754414
+  },
+  "consistency": {
+    "spread": 0.001274925238107849,
+    "mean_sigma": 0.07181247752631673
+  }
+}
