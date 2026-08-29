@@ -1,0 +1,279 @@
+% Authorship: Claude-drafted, author-revised
+\section{Introduction}
+
+Where do the determinants of legal content come from? The question sounds
+technical, yet it sits at the center of a half-century jurisprudential
+impasse.
+On H.L.A.\ Hart's account, law's content is determined by social facts, by
+convergent official practice, rather than by moral
+truths.\footnote{H.L.A.\ Hart, \textsc{The Concept of Law} 100--10 (3d
+ed.\ 2012).} On its face the thesis is attractive. On that account, law can exist in
+morally deficient regimes, and legal disputes can be settled without first
+resolving deep moral disagreements.
+
+On the details, though, Hart's framework is conspicuously silent. How much
+convergence is ``enough'' for a legal norm to exist? Where judicial practice
+pulls in conflicting directions, with some judges treating a constitutional
+value as dispositive and others weighing it against competing principles,
+does the system generate contradictory law, or no law at all? Hart's answer
+was candid and unsatisfying. In such ``hard cases,'' he said, the law simply
+runs out.\footnote{\textit{Id.}\ at 124--36 (discussing the ``open texture''
+of law and the inevitability of judicial discretion in hard cases).} In those cases, as Hart saw it, judges exercise discretion, and their
+decisions make new law rather than discovering law that was already there.\footnote{\textit{Id.}\ at 272
+(Postscript).}
+
+To Ronald Dworkin, that was a fatal concession. If law runs out in precisely
+the cases that matter most, where rights hang in the balance and the parties
+most need resolution, then Hart's positivism delivers too little law to do
+the work law must do.\footnote{Ronald Dworkin, \textsc{Law's Empire} 37--43
+(1986).} Against that, Dworkin offered law as integrity: on any question the law is
+whatever follows from the best moral interpretation of the community's
+institutional history. Hard cases \textit{do} have right answers on that
+view. Finding them, however, requires constructive moral reasoning of a kind
+that resists formal specification.\footnote{\textit{Id.}\ at
+225--75.}
+
+For half a century the result has been an impasse, and a shabby place for
+jurisprudence to have settled. Hart's theory is formal enough to model but appears to undergenerate law.
+Dworkin's generates law enough but resists the formalization that would let
+anyone test it systematically.\footnote{For the canonical framing, see Scott J.\ Shapiro,
+\textsc{Legality} 25--52 (2011). For more recent assessments, see Jules L.\
+Coleman, \textsc{The Practice of Principle} 65--72 (2001); Mark Greenberg,
+\textit{The Moral Impact Theory of Law}, 123 \textsc{Yale L.J.}\ 1288,
+1290--95 (2014).}
+
+Mitchell Berman's principled positivism offers a way
+forward.\footnote{Mitchell N.\ Berman, \textit{How Practices Make
+Principles and How Principles Make Rules}, 28 \textsc{J.\ Ethics \& Soc.\
+Phil.}\ 299 (2024) [hereinafter Berman, \textit{Practices}]. Berman is
+developing these ideas further in a book in progress. See Mitchell N.\
+Berman, \textsc{To Say What the Law Is: The Constitution, the Supreme
+Court, and the Nature of Law} (forthcoming) (manuscript on file with
+author). I am grateful to Professor Berman for extensive discussions
+clarifying the theory and responding to the computational findings
+reported here.} Like Hart, Berman identifies law through social facts and
+convergent official practice. Unlike Hart, he does not rely on consensus.
+Instead, legal principles \textit{aggregate} through Simple Additive
+Weighting. Each principle contributes legal force in proportion to two
+quantities: its weight, meaning how much it counts in the legal system
+generally, and its activation, meaning how strongly it bears on the case at
+hand. In a given
+case the net legal force is:
+%
+\begin{equation}
+F = \sum_{i=1}^{n} w_i \times a_i
+\end{equation}
+%
+A case is determinate when the principles together generate net force in one
+direction. How much force is required, and indeed whether the theory needs
+any threshold beyond the bare balance, is among the questions taken up
+below.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at
+328--31.}
+
+The proposal has three virtues. Because principles need not achieve
+consensus, it offers more law than Hart: several principles, each carrying
+only partial support, can aggregate to a determinate outcome where no single
+principle commands universal assent. Because the aggregation is mechanical,
+a matter of multiplying weights by activations and summing, it avoids
+Dworkin's demand for moral interpretation. And it explains something neither Hart nor Dworkin captures well. In
+practice, judges appear to treat conflicting considerations as carrying
+\textit{different weights} to be \textit{balanced}, rather than as
+generating contradictions or as demanding interpretive resolution.
+
+Berman develops these claims philosophically rather than quantitatively,
+and the theory leaves four questions open. Each bears on the proposal's
+success.
+
+First, how precise must the weights be? Berman argues that rough weights
+suffice.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at
+328--30 (responding to Stephen Perry's objection that judicial practice
+cannot deliver precise enough weights). See Stephen R.\ Perry, \textit{Two Models of Legal Principles}, 82
+\textsc{Iowa L.\ Rev.}\ 787, 794 (1997) (doubting that custom ``could be
+sufficiently nuanced as to be able to assign determinate weights to
+individual principles''), which is the passage Berman answers.} He does not say how rough is rough enough. Second,
+does the theory need a determinacy threshold at all, a minimum net force below
+which a case counts as a gap rather than as decided? On this Berman is
+explicit that an aggregative system ``could incorporate thresholds or
+eschew them,'' committing to neither.\footnote{Berman, \textit{Practices},
+\textit{supra} note 7, at 331.} Any requirement of principled positivism
+beyond the balance favoring one side is left open.
+
+Third, is additive weighing the right functional form? On Berman's account,
+principles combine by weight and magnitude rather than by fixed priority, a
+structure he contrasts pointedly with the \textit{lexical} orderings that
+rank some considerations absolutely above others.\footnote{\textit{Id.}\ at 311--13,
+333 (distinguishing genuine weighing from lexical priority and locating
+principled positivism on the weighing side of that line).} He does not defend the additive form against its nonlexical cousins,
+though, nor does he say what turns on the contrast with counting or
+ranking.
+
+Fourth, and most consequentially, what \textit{drives changes} in the
+practice that grounds the weights? On Berman's telling the weights are
+grounded in practice,\footnote{\textit{Id.}\ at 329--30. The compressed
+term ``practice-grounded'' is this Article's; Berman writes of principles
+``grounded in practice.''} and he indicates, if
+gesturally, how the taking-up and embedding of a principle fix its weight at
+a given time. He leaves open the prior question of what moves those
+takings-up: the shifting uptake of principles in judicial reasoning, their
+embedding in holdings still relied upon, strategic adaptation by judges, the
+turnover of the bench through appointment, or some combination.
+
+Philosophical argument alone will not settle these, and the reason is that
+each turns on a quantity. How much weight imprecision the model absorbs
+depends on the relation among weight uncertainty, the number of principles,
+and the force required for determinacy, across a parameter space too large
+for any thought experiment to chart. The claim that the model yields more law than Hart can be
+settled only by implementing both and measuring. Ruth Chang's objection
+takes exactly that form, and it is the reason Part IV is built as a count
+rather than as a worked case. To choose among
+functional forms one must run the alternatives on identical inputs. And the
+emergence of weights from practice can be tested only by simulating practice
+and inspecting the resulting weights.
+
+Computation enters at that point, to extend philosophical argument into
+territory argument alone cannot reach. Given a formal model, a philosophical
+theory can be stress-tested: implemented in code, subjected to systematic
+variation, and measured against explicit criteria. The method will not
+establish the truth of Berman's theory, a matter that would require
+empirical validation well beyond this Article's scope. It shows instead how
+far the theory's formal structure can bear the weight Berman places on
+it.\footnote{Computational methods in jurisprudence remain uncommon. For
+related uses of simulation in legal theory, see Frederick Schauer,
+\textit{(Re)Taking Hart}, 119 \textsc{Harv.\ L.\ Rev.}\ 852, 879--82 (2006)
+(discussing the value of formal modeling in positivist theorizing); Brian
+Leiter, \textsc{Naturalizing Jurisprudence} 183--99 (2007) (arguing for
+empirical methods in general jurisprudence).}
+
+\subsection*{The Argument}
+
+This Article develops the first systematic computational test of principled
+positivism. It implements the theory faithfully, varies its parameters
+across ranges no thought experiment could canvass, and measures the results
+against what the theory itself requires. Two findings emerge.
+
+The first is that the formal apparatus is sound. Given faithful weights,
+meaning weights that correctly record how much each principle counts, the
+weighted sum does what Berman says it does. Its sharpest result holds as
+a theorem, before any weight is tuned: where a Hartian validation rule
+contradicts itself, the weighted sum returns a single verdict. Such a rule
+asks only for each authority's validity and direction, so on a genuine
+conflict it certifies both sides at once. The sum cannot, because summing weighted forces yields one net force with one
+sign.
+
+Two further properties follow. The sum weighs the \textit{magnitude} of
+competing considerations rather than ranking them by fixed priority, and it
+tolerates rough weights, even wholly equal ones, without collapsing into
+gridlock or into vote-counting. Several of these properties are theorems,
+true of the model as such rather than artifacts of a particular
+run.\footnote{See infra Part IV.D (establishing that the weighted sum is single-valued on any case whatever,
+that the weight the embedding dynamic confers, which Part III implements as
+the reliance mechanism, does not depend on how often a principle is invoked, and that equal weights do not reduce to counting
+votes; each result is stated there with the scope it is proved under, which
+differs across the five).}
+
+How much law results remains a matter of degree, and there the
+figures are conservative. At a demanding determinacy threshold the sum decides about six cases in
+seven overall, and a slim majority of the hardest contested ones; on the
+bare sign of net force, nearly every case but those in true equipoise. Both rates assume independent
+activations, and correlation should only improve them. On the question Berman's critics press hardest, whether a balance of
+principles can yield real law, the answer appears to be yes.
+
+The second finding is the harder one. The formal structure does not fail. But
+its success is inherited. Everything the model delivers rests on the
+weights, and the weights rest on practice. How practice grounds a weight at
+a given time the theory does say, if gesturally: officials take a principle
+up and embed it in their reasoning and their holdings. It leaves open
+the prior question of what \textit{drives changes} in those takings-up
+over time.
+
+Four such dynamics are modeled here: the rising and falling \textit{uptake}
+of a principle in judicial reasoning, its \textit{embedding} in the holdings
+that go on relying on it, the \textit{strategic adaptation} of judges
+learning which arguments move their colleagues, and the near-random
+\textit{shock} of judicial appointment. Each satisfies every requirement the
+theory imposes. Each is well-defined, tolerant of rough weights,
+magnitude-weighing, and more determinate than a hierarchy of the kind Hart's picture suggests, which
+sorts the principles into ranked tiers and decides a case at the highest tier
+holding an applicable principle, and only where enough of that tier's
+principles point the same way.
+
+But on the weights themselves the four do not converge. Applied to the same
+cases, they disagree on the verdict in roughly a third and reach
+opposite determinate verdicts in about a quarter.\footnote{Part VI reports
+these divergence rates. The pattern has a telling exception: the appointment
+dynamic produces a weight structure so close to embedding's that the two
+disagree on fewer than one case in fifty, though that convergence turns out
+to depend on both reading a common legal culture.} The choice among them is therefore unlikely to be a matter of legal
+indifference. On this account it would shape the law's content.
+
+Principled positivism, then, does not so much resolve the open question it
+inherited as relocate it. Hart's law ran out in hard cases. Dworkin's
+required moral interpretation to recover the right answer. Berman's locates
+the answer in a balance of practice-grounded principles, and the balance
+works. The theory does not settle which dynamics of changing grounds
+fix the weights the sum runs on. Because those dynamics pull the law in different directions, the question is
+no idle bookkeeping. It is itself a determinant of legal content, and one
+that any successor theory would likely have to settle. That is the problem of practice, and it is likely a narrower and more
+tractable problem than the one principled positivism inherited.
+
+\subsection*{What the Argument Does and Does Not Establish}
+
+Two cautions frame what follows. First, this is no refutation of principled
+positivism. If anything the formal results vindicate it against its
+sharpest critics, since the aggregation it proposes proves coherent, robust,
+and more powerful than Hart's. And the claim here is narrower and, I think, more useful. The theory's reliance on practice is where its remaining work lies,
+and that reliance is more consequential than the phrase
+``practice-grounded'' lets on, a term this Article uses as shorthand for
+his ``grounded in practice.'' Berman himself has pressed several of these
+points, among them that the theory may not need a threshold at all, and that
+the dynamics of change in legal grounds, including the near-random shock
+of a new judicial appointment, are unlikely to be exhausted by any single
+model. The analysis here takes those points seriously and shows,
+computationally, why they matter.
+
+Second, the test is formal rather than empirical. The cases are synthetic
+and the practice is simulated. The model can show what the theory's structure will and will not
+support, and it can perhaps suggest where a defender should look next. It cannot show whether any actual legal system grounds its weights through one
+dynamic rather than another. Which practice best describes real adjudication is an empirical
+question, a matter for the sociology of legal institutions and one that would
+presumably require coding real judicial decisions, and this Article frames it
+without resolving it.
+
+\subsection*{Roadmap}
+
+Part II sets out principled positivism: the SAW model, the roles of weight
+and activation, and what the theory needs from each. Part III describes the
+computational framework, the four dynamics of practice, and the four
+requirements against which every result is measured, namely that the model
+be well-defined, tolerate rough weights, weigh magnitude rather than rank by
+fixed priority, and deliver more law than the tiered hierarchy that stands in
+for Hart.
+
+Part IV establishes the first finding. Given faithful weights the static
+model works, and several of its properties are theorems rather than
+artifacts of a run. Parts V and VI then turn to practice. Part V shows that
+weights can \textit{emerge} from simulated practice rather than waiting on a
+theorist to stipulate them. In Part VI the Article's central claim lands:
+the four dynamics move the weights into distinct structures, and every one
+of them meets the requirements the theory imposes. Practice, that is, is not
+unitary.
+
+Two robustness questions follow. Part VII shows that the result turns on
+weighing magnitude rather than counting or ranking, and that within the
+family of magnitude-weighing rules nothing turns on the particular form.
+Part VIII takes up the determinacy threshold and shows it to be a modeling
+choice rather than a commitment of the theory. It governs how much of the
+law comes out determinate, not the model's substantive properties. Part IX then argues what the relocation would mean for the debate Berman
+entered, and answers the objections it is likely to invite. Part X closes.
+
+On their own, the computational findings reported here settle no question of
+jurisprudence. What they do is sharpen one. The aggregation formula works,
+and weights can emerge from practice rather than waiting on a theorist to
+supply them, so the formal structure carries what Berman asks of it. That
+structure cannot supply an account of the dynamics that move the
+practice beneath it. Because those dynamics pull the weights in different
+directions, the choice among them is itself a determinant of legal content.
+That is the problem of practice: a narrower and, plausibly, a more
+answerable problem than the one principled positivism inherited from
+Hart and Dworkin, and arguably the right place for the next round of work to
+begin.

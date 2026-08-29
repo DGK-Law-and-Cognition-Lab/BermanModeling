@@ -1,0 +1,57 @@
+{
+  "exp1": {
+    "mean_cv": 0.2409869090609716,
+    "mean_gap": 0.35404375464898163,
+    "mean_entropy": 2.1646260657830974,
+    "mean_bins": 2.7,
+    "per_seed_bimodal": 9,
+    "pooled_dbic_conferred": 206.08254957027384,
+    "pooled_dbic_uptake": 215.72438784575922,
+    "lockin_cv": 0.46468175675364565,
+    "lockin_gap": 0.5935128855168127
+  },
+  "exp2": {
+    "loser_uptake": 0.949,
+    "loser_conferred": 0.0,
+    "max_conferred": 1.0,
+    "spearman_uptake_conferred": -0.31666666666666665
+  },
+  "exp3": {
+    "R1": 1.0,
+    "R2": 1.0,
+    "R3": 1.0,
+    "R4": 1.0,
+    "mean_sigma": 0.09744845251426247,
+    "mean_margin": 0.29137500000000005,
+    "mean_cv": 0.2409869090609716,
+    "mean_entropy": 2.1646260657830974
+  },
+  "exp4": {
+    "mean_spearman": 0.48089506199912885,
+    "mean_pearson": 0.39356319544811147,
+    "rank_shift": {
+      "text": -2.7,
+      "original": -2.433333333333333,
+      "precedent": -0.8333333333333334,
+      "structure": -0.9333333333333333,
+      "federalism": -1.2,
+      "dignity": 1.7,
+      "equality": 2.2,
+      "liberty": 2.3333333333333335,
+      "welfare": 1.8666666666666667
+    }
+  },
+  "exp1b": {
+    "correlated": {
+      "textual": 0.5668304928557627,
+      "structural": 0.6855669330543314,
+      "moral": 0.9631849415363457
+    },
+    "independent": {
+      "textual": 0.8205749386940652,
+      "structural": 0.8380870997180282,
+      "moral": 0.862044590655004
+    }
+  },
+  "self_check_passed": true
+}

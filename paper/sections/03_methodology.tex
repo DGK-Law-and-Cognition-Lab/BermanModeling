@@ -1,0 +1,563 @@
+% Authorship: Claude-drafted, author-revised
+\section{Computational Framework}
+
+This Part explains how Berman's theory is implemented as testable
+computational models and sets out the four requirements against which those
+models are measured. Already formal enough to implement directly, the theory admits of the
+systematic variation that thought experiments cannot supply. Three sections
+follow. The first Section describes the methods. At its core are two things: a direct rendering of Simple Additive
+Weighting, the \textit{stipulated engine}, whose weights are set by hand,
+and four mechanisms that ground the principle weights through four
+different practices. In order, the four practices are the uptake of principles in judicial
+reasoning, their reliance-based embedding in precedent, the
+strategic adaptation of judges, and the exogenous shock of judicial
+appointment.
+
+By the one line the theory is defined against, the second Section then
+sorts the candidate aggregation functions: whether a rule weighs the
+magnitude of competing principles or merely ranks them. The third states the four requirements any faithful implementation must
+meet. On that test the weights must be well-defined, tolerant of rough
+specification, magnitude-weighing, and productive of more law than a Hartian baseline. On the
+evidence reported there, every mechanism meets them.\footnote{All code, data, and analysis scripts are
+publicly available. See
+\url{https://dgk-law-and-cognition-lab.github.io/BermanModeling/}. The
+implementation is in Python with standard scientific-computing libraries.
+Case and seed counts vary by experiment rather than following one convention.
+Synthetic case draws run from three hundred to fifty thousand, and repetitions
+from a single seeded draw to thirty independent seeds. The four requirements
+stated below are scored on eight hundred held-out cases across thirty seeds
+for each of the four mechanisms. Confidence intervals are 95\% bootstrap
+intervals from 2{,}000 resamples, computed from a fixed seed so that every
+reported interval is exactly reproducible. Most comparisons in what follows
+are reported descriptively, as means across seeds rather than as hypothesis
+tests. Two are tested: the comparison across replacement rules in Part~V uses
+the Wilcoxon signed-rank test on the seed-paired values, and the same Part
+tests unimodality with Hartigan's dip test, whose $p$-values are interpolated
+from a simulated null rather than exact.}
+
+\subsection{Methods}
+
+\subsubsection{The Stipulated Engine}
+
+The core implementation encodes Berman's aggregation equation directly. In it
+each principle carries a name, a weight $w_i \in [0,1]$, and a category. Nine principles run throughout, and the assignment of each to
+a category is the \textit{category map}: text and original meaning are the two textual principles; precedent,
+structure, and federalism the three structural ones; and dignity, equality,
+liberty, and welfare the four moral ones. They
+track the examples in Part II. The three categories are of unequal size, which matters later for any rule
+that takes them in order. Such a rule calls them tiers, as the hierarchical
+Hart does, and this Article uses the two words for the same three groups. A case maps each principle to an activation
+$a_i \in [-1,+1]$; net force is $F = \sum_i w_i a_i$; and a case is
+determinate when $|F|$ exceeds the threshold $\tau$. As Part II argued, the threshold is a modeling choice rather than a
+discovered constant. The faithful baseline is the bare sign of net force
+($\tau = 0$). As Part VIII shows, a positive $\tau$ is a confidence gate, not a quantity
+the theory fixes. Unless a passage says otherwise, the results below are computed at $\tau =
+0.2$, a gate this Article imposes rather than one the theory supplies. Part~IV
+reports the fate of conflicting cases at the bare sign as well, and
+Part~VIII sweeps the threshold from $0$ to $0.30$ to separate the results that
+move with it from those that do not.
+
+Throughout, I test the model on synthetic cases rather than hand-coded
+disputes.\footnote{Validation on real disputes is the natural next step but
+requires extensive doctrinal coding (assigning activation values to actual
+judicial opinions) that is beyond this Article's scope. Part X sketches what
+such an empirical program would involve.} Unless otherwise noted, activations are drawn independently from a uniform
+distribution on $[-1,+1]$.\footnote{How the mechanisms generate their own case streams departs from this, and the
+departure is set out here rather than left to be found in the code. The uptake
+bench draws its stream independently, as stated. Reliance, strategic
+adaptation, and appointment generate their weights on a category-correlated
+stream instead, each activation mixing a latent factor shared by the
+principles of its category with idiosyncratic noise, weighted $0.7$ to the
+factor. A third structure, \textit{full correlation}, which later Parts use as
+a limiting case, replaces the per-category factors with a single latent factor
+shared by all nine principles at the same $0.7$ weighting, so that all nine
+tend to move together regardless of kind. The four requirements are then scored for all four mechanisms on the
+same independent held-out battery, so the pass-or-fail verdicts of the
+requirements Section rest on the conservative baseline throughout. The
+generating stream nonetheless shapes the weights themselves. Run on an
+independent stream, reliance keeps the direction of its lean toward the moral
+principles but loses most of its size, the gap between its mean moral weight
+and its mean textual weight falling from about $0.40$ to about $0.04$ on
+weights rescaled so the heaviest principle is one. The corresponding
+comparison has not been run for appointment.} This is a conservative choice. Independent
+activations maximize variance and conflict. By contrast, real cases would likely exhibit correlated activations, which
+Part IV shows improve the model's noise tolerance and its raw determinacy.
+On independent activations, therefore, those results understate how the
+model would fare on realistic ones. As Part IV reports, the margin over the hierarchical Hart is the exception
+and runs the other way; the requirement is accordingly scored on independent activations, where the
+comparison would seem less flattered by a tiered rule's ability to stop at
+the top tier.
+
+Rather than fix one set of weights, I test three distributions spanning
+plausible weight structures.\footnote{The three are \textit{uniform} ($w_i$
+drawn from $U(0.60, 0.70)$, near-equal importance), \textit{moderate} ($w_i$
+from $U(0.50, 0.80)$), and \textit{high-variance} ($w_i$ from $U(0.30,
+0.95)$, a system in which some principles matter much more than others).}
+
+To measure how much weight imprecision the model tolerates, I perturb each
+weight with Gaussian noise and ask how often the perturbed verdict matches
+the original. From that perturbation comes the key quantity, the \textit{critical
+uncertainty} $\sigma^{*}$: the noise level at which agreement with the unperturbed verdict
+falls below eighty percent, the point at which one case in five changes its
+result under perturbation.\footnote{Formally, I add $\epsilon \sim N(0,
+\sigma^2)$ to each weight, clipped to $[0,1]$. A case counts as robust at a
+given $\sigma$ if it keeps its unperturbed \textit{signed} verdict
+(determinate-for, determinate-against, or indeterminate) on at least ninety
+percent of forty random redraws of the noise (Monte-Carlo draws); $\sigma^{*}$ is the smallest
+$\sigma$ at which the share of robust cases drops below 0.80. Tracking the
+signed verdict is stricter than tracking determinacy alone (a flip from
+determinate-for to determinate-against counts as instability), and the
+search grid stops at $\sigma = 1.0$, so a model still robust there is recorded
+as tolerant beyond it. The correlation comparison Part~IV reports is the one
+departure from the count of forty, using sixty-four; since its arms share that
+count, the contrast within it is unaffected.} Throughout, two further quantities appear as descriptive measures, never as
+pass-or-fail thresholds: the \textit{coefficient of variation} of a weight
+vector, recording how far its entries lie from their own mean, and the
+number of \textit{surviving} principles, those carrying weight above a small
+cutoff. The first of these has to be read with care where a mechanism sets
+some weights to zero, since a vector holding zeros disperses widely without
+being graded among the weights it retains.
+
+\subsubsection{Four Mechanisms of Practice}
+
+The stipulated engine takes the weights as given. But the weights are the
+theory's hinge. Berman holds, correctly on this Article's account, that
+they are conferred by practice rather than stipulated by a
+theorist.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at
+329.} The open question is which practice, and through what dynamic. The next four models answer it differently.
+
+Each grounds the principle weights through a different practice:
+uptake, reliance, strategic adaptation, and appointment. In running all
+four, the purpose is to show that the formal apparatus does not depend on
+which is right. As the requirements Section details, each yields weights that meet them, on every seed for three of the four mechanisms and on all but
+a handful of seeds for the fourth. The four do not share the weights themselves, and that is where the
+theory's open question lies.
+
+\textit{Uptake.} The first mechanism grounds weight in how often a principle
+is taken up. On this model a bench of roughly one hundred judges decides a stream of
+cases in nine-judge panels. Each judge carries one of four interpretive methodologies, which sets the
+larger part of its propensity to invoke each principle. Two smaller terms
+adjust it: a judge leans slightly toward the principles the bench currently
+weighs most, and reaches somewhat more readily for a principle the case before
+it activates strongly. From that stream emerges each principle's \textit{uptake share}: the
+frequency
+with which the bench invokes it, expressed as a fraction of the most-invoked principle's own frequency, so that the most-invoked principle is
+$1.0$.\footnote{The
+uptake share is a spare model of Berman's notion of
+``taking-up.'' Berman, \textit{Practices}, \textit{supra} note 7, at 329. It
+is not yet weight in his fuller sense, which the reliance mechanism
+approaches more closely.}
+
+That share is not yet the weight the model runs on. Between the two sits a
+\textit{live/dead cut}: a principle whose uptake share falls below the median
+share is set to zero, and the principles at or above the median keep the
+shares they have.\footnote{The cut is a different operation from the small cutoff used to
+count surviving principles, which is fixed at $0.05$ and only reads a weight
+vector rather than altering one. The two are not independent: the cut sets a
+weight to zero, and a zeroed weight then falls below the counting cutoff,
+which is why the survivor count tracks the cut. The cut is distinct too from the determinacy
+threshold $\tau$, which gates verdicts rather than weights.} The cut
+implements the threshold of uptake described in Part~II, the point at which
+enough officials invoke a norm for it to count as a principle at all. On nine
+principles it leaves five standing, the same five on every seed, so the
+survivor count reported later is a product of the cut and not of the uptake
+shares alone. And it operates while the simulation runs rather than on a
+finished vector, so a principle once zeroed is invoked less often in the cases
+that follow, making the two-group structure Part~V reports in part a
+structure the cut helped produce.
+
+Because one might worry that the result turns on
+how the bench changes over time, I run four turnover regimes. For the headline result the bench is static, with no replacement. The others replace by appointment, reseating a random fifth of the bench
+with judges drawn afresh from the four methodologies in equal proportion; by
+drift, reseating a random fifth with near-copies of judges already
+sitting; and by a fitness rule that retires the least decisive judges.
+Replacement by appointment is a turnover rule inside this bench, not the
+appointment mechanism described below, which confers weight by a different
+measure entirely. Under all four the emergent structure holds. Notably, it does not depend on the fitness rule.
+Berman has questioned that rule's Darwinian framing, and the design is built
+to do without it. On this model, a principle's weight tracks how often a practice
+takes it up, among the principles the cut leaves standing.
+
+\textit{Reliance.} The second mechanism is the closest to Berman's own
+account: weight conferred by \textit{embeddedness}. A principle gains weight by prevailing in contested, dispositive disputes.
+How much the resulting holding is later relied upon amplifies that gain,
+which decays over time and is stripped away when a precedent is overruled.\footnote{Decision and
+read-out are decoupled. The disputes are resolved by a fixed, exogenous
+pressure structure, and the conferred weight is read out separately, so the
+dynamic cannot lock itself in. A circular variant, in which conferred weight
+feeds back into the disputes it decides, is implemented only to demonstrate
+the runaway lock-in it would cause, and is switched off in the reported
+runs.} When Berman says that a principle is preserved by the holdings that rely on
+it, this is arguably the mechanism he gestures at. From uptake, which counts invocations and reads nothing about how a dispute
+came out, it is distinct, and distinct too from the strategic mechanism below,
+which optimizes toward a goal. Here a principle's weight
+is the accumulated, decaying weight of the precedent that rests on it.
+
+\textit{Strategic.} The third mechanism models judges as adaptive
+optimizers.\footnote{See generally Richard S.\ Sutton \& Andrew G.\ Barto,
+\textsc{Reinforcement Learning: An Introduction} (2d ed.\ 2018).} Each is a reinforcement-learning agent that adjusts a shared weight vector
+to maximize a reward. That reward is consensus agreement routed through the weighted sum and
+computed on a slightly noised draw of each judge's force, so that the weights
+receive a gradient at all. It rewards agreement, adds a bonus where the agreed
+force is decisive, and charges a small cost for each principle invoked. That
+cost keeps the optimum from being to invoke everything.\footnote{The
+quantity read out is a genuine weight that multiplies the activations inside
+each judge's force, not a probability of invoking a principle. Judges also
+learn when to invoke, in the same update, but that policy is not what the
+weights are read from. (An earlier version of this project read out the
+learned invocation frequencies instead, which merely reproduced uptake; that
+is corrected here.) Learning uses a standard reinforcement-learning update, the REINFORCE
+policy gradient: each agent nudges its weights toward whatever improved its
+reward, and the nudges shrink toward zero over training so the weights
+settle to a stable read-out.} Of the four this is the least Bermanian. Berman nowhere describes judges
+optimizing a goal, and the mechanism should be read as a robustness lens
+rather than as an interpretation of the theory. If even strategic learning
+produces weights that meet the requirements, those requirements are
+unlikely to be an artifact of any one picture of practice.
+
+\textit{Appointment.} The fourth mechanism builds on the dynamic Berman himself proposed: the
+near-random, exogenous shock of judicial appointment. The decision pressure that resolves disputes comes from the sitting bench.
+At intervals a random cohort of judges is replaced by newcomers, each carrying
+an idiosyncratic variation on the common legal culture's pressure structure,
+meaning the fixed pattern of decision pressure that settles disputes from
+outside the weight dynamic, the same exogenous structure the reliance
+mechanism takes as fixed.
+They are not selected for success, simply reseated,
+which models the social fact that benches turn over.\footnote{There is no fitness
+anywhere in this mechanism: the cohort is replaced at random, reflecting
+social acceptance rather than selection.}
+
+Weight is read from \textit{holding-support}: the breadth of still-live
+holdings resting on each principle, lightly decayed. A holding stays live
+until it is overruled, slowly and case by case, or until one of its
+principles is disavowed, quickly and wholesale. On this construction a
+principle's vitality is its surviving holding-support, which does not
+require that the principle be currently invoked. That is the embedding-via-holdings point Berman has emphasized in correspondence. This
+mechanism joins his proposed appointment dynamic to that embedding account.
+
+An earlier version of this project also tested a hybrid mechanism that
+combined learning with periodic replacement. It is omitted here. Originally it was introduced to find a mechanism that could jointly satisfy
+properties an earlier framing scored pass-or-fail. As the requirements Section explains, two of those properties should not
+have been scored at all, which
+removes the problem the hybrid was built to solve.
+
+Through four different practices, then, these mechanisms ground the
+weights. Yet as the requirements Section reports, each yields weights that are
+well-defined, noise-tolerant, magnitude-weighing, and more determinate than the
+hierarchical Hart, and each does so on every seed but for one mechanism's
+noise-tolerance. The formal apparatus is robust to how practice is modeled.
+The four do not agree on the weights themselves, and Part VI takes
+up the consequences. The aggregation works under every mechanism. At issue,
+then, is not the aggregation but the dynamic of changing grounds that
+confers the weights it works on.
+
+\subsection{Aggregation Functions}
+
+Parts IV through VI take Simple Additive Weighting as the aggregation
+function, the form Berman writes down. But SAW is one member of a family,
+and the family is defined by what the theory is set against. Berman places principled positivism on the \textit{weighing} side of a
+line. Principles contribute more or less force according to how strongly
+they apply. They do not rank in a fixed priority under which a higher-ranked principle would defeat any lower-ranked one regardless of magnitude.\footnote{Berman,
+\textit{Practices}, \textit{supra} note 7, at 311--13, 333.}
+
+Sorted by that line into three classes, ten aggregation rules go to Part
+VII: the cardinal family that reads magnitudes, the ordinal rules that read
+only signs and ranks, and the lexical rules on the far side. The aim is not a
+contest for the best rule. It is to confirm that the defining property holds
+across the family Berman endorses, and to measure what the choice between
+weighing magnitudes and merely counting them is worth.
+
+Of the ten, four are the genuine candidates, all of them cardinal rules that
+read magnitudes. \textit{Simple Additive Weighting}, the reference form,
+is $F = \sum_i w_i a_i$, determinate when $|F| > \tau$. \textit{Nonlinear combination} keeps the additive form but lets a
+principle's contribution grow faster than linearly in how strongly it
+applies, $F = \sum_i w_i a_i e^{\beta |a_i|}$ with $\beta =
+4$.\footnote{This generalizes SAW while respecting Berman's commitment that
+principles contribute weighted force. It is the sharpest departure from linearity in the cardinal family and the
+highest scorer on the magnitude probe described below, which is what earns it
+a place: it tests whether the defining
+property depends on the contribution being linear in activation. It adds no
+interaction between principles, so it is not a test of whether principles
+reinforce or dampen one another. No rule in the battery tests that.} Holding the form fixed, two further variants vary its surroundings: a
+\textit{bare-sign} rule, deciding on the sign of net force, and a
+\textit{normalized} rule, rescaling the weights to sum to one before
+adding. The normalized rule is a control rather than a fifth function, since a
+positive rescaling cannot change the sign of a sum and it therefore returns
+the bare-sign rule's verdict on every case; it is carried to forestall the
+objection that the results turn on the scale of the weights. Of the four
+cardinal rules only Simple Additive Weighting carries a determinacy gate. The
+other three decide on the bare sign and abstain on no case, which is why
+Part~VII compares them on verdicts rather than on how much they settle. Part VII shows that the in-theory results are not specific to
+Simple Additive Weighting: the defining property belongs to every rule in the
+family.
+
+Two functions are the mode the theory is defined against. \textit{Lexicographic
+ordering} ranks the principles by weight and lets the highest-ranked active
+principle decide, lower-ranked principles having no effect whenever a
+higher-ranked one is active.\footnote{Lexicographic ordering is associated
+with Joseph Raz's view of exclusionary reasons. See Joseph Raz,
+\textsc{Practical Reason and Norms} 35--48 (2d ed.\ 1999).}
+\textit{Cascade} ranks the principles by category first, text before
+structural principles such as federalism and those before substantive ones
+such as dignity, and by weight within a category. The highest-ranked principle
+that applies at all decides the case, and nothing below it is consulted. Since
+activations are drawn from a continuous distribution, a textual principle
+applies in effectively every case, so cascade in practice decides on text
+alone.\footnote{On twenty thousand cases at the moderate weight vector, the
+deciding principle was the plain text in every one. That is a property of the
+case generator rather than of the rule, and it is what makes cascade the more
+extreme of the two lexical foils.}\footnote{Cascade is the functional form
+implicit in categorical textualist orderings. See Antonin Scalia \& Bryan
+A.\ Garner, \textsc{Reading Law: The Interpretation of Legal Texts} 56--77
+(2012).} These are not candidate readings of principled positivism
+entertained and then rejected on performance. They are the structural
+contrast class, and the magnitude-weighing requirement measures how far the
+weighted sum departs from them.
+
+Four rules isolate the cardinal question. Each keeps the sign, and at most the
+within-case rank, of the activations while discarding their magnitudes: a bare
+\textit{vote-count}, a \textit{weighted vote} in which a principle's vote
+counts in proportion to its standing, a \textit{Borda count} awarding each
+principle points equal to its within-case rank in force, scaled by the rank of
+its weight rather than by the weight itself, and a \textit{median} rule that
+takes the middle vote.
+
+Only one of the four is a clean one-variable contrast with the weighted sum.
+The weighted vote keeps the cardinal weights and discards only the magnitudes,
+so it isolates exactly the question the magnitude-weighing requirement asks. The
+bare vote-count and the median rule drop the weights as well, and the Borda
+count replaces them with their ranks, so those three differ from the weighted
+sum in two respects rather than one. The median rule is in any event a control
+rather than a fourth tally: on a panel of odd size, and the panel here is nine
+principles, the median sign is the majority sign, so it returns the
+vote-count's verdict on every case. Counting the two controls, the ten labels
+name eight distinct verdict rules.
+
+The ordinal rules are not a foil but a rival. Nothing in a legal system
+that fixed content by a tally among principles would be incoherent. And
+Berman himself allows the principles to carry equal weight, the case
+where a weighted sum comes closest to a count.
+
+That is arguably
+what makes the cardinal-ordinal line the one worth measuring. Part VII sorts the ten rules by the magnitude
+probe, reports that the defining property belongs to the cardinal family alone,
+and measures what the choice across that line is worth in verdicts. Across the classes it does not read determinacy rates or Hart margins as
+measures of fidelity, because the ungated rules turn every case into a verdict
+and no such comparison would be like for like.\footnote{The Borda count is the
+one partial exception, abstaining on the small share of cases where its rank
+sums tie exactly, which is $0.36\%$ of the battery. Part~VII reports the
+inflated cross-class figures and sets them aside on this ground.}
+
+\subsection{Four Requirements}
+
+To compare the mechanisms and functions, I hold each to four
+requirements, properties any faithful implementation of principled
+positivism must have. Each is drawn from something Berman claims or commits
+to, and each is scored seed by seed across thirty random seeds for each of the
+four mechanisms. A mechanism counts as meeting a requirement when it clears it
+on all thirty; where it clears fewer, the seed count is reported and the
+shortfall noted.\footnote{The implemented rule is a seed share rather than
+unanimity, requiring $0.90$ of seeds on the first, third, and fourth
+requirements and $0.80$ on the second. On the runs reported here the slack
+never decides an outcome: three mechanisms clear all four requirements on
+every seed, and the fourth falls short only on noise tolerance, at twenty-six
+of thirty, which the requirements Section reports rather than absorbs.} The
+aggregation functions of Section III.B are held to one of the four rather than
+all of them, since only the magnitude probe described below can be run like
+for like
+across rules that differ in whether they abstain at all; Part~VII explains
+why. The four are independent: meeting one neither entails nor precludes
+meeting another. Table~\ref{tab:requirements} summarizes them;
+the paragraphs that follow give each its basis and its operational test.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{The Four Requirements}
+\label{tab:requirements}
+\begin{tabular}{@{}p{3.4cm} p{5.2cm} p{4.3cm}@{}}
+\toprule
+\textbf{Requirement} & \textbf{Operational test} & \textbf{Basis in Berman} \\
+\midrule
+Well-defined & At least two principles carry weight above a small cutoff.
+& The theory's plurality of weighted principles. \\
+\addlinespace
+Noise-tolerant & Critical uncertainty $\sigma^{*} \geq 0.07$: the weights
+survive $\pm 0.07$ of perturbation before one case in five flips its
+verdict. & ``Rough weights suffice,'' his answer to Perry. \\
+\addlinespace
+Magnitude-weighing & Under a magnitude-only perturbation, the weighted sum
+changes
+its verdict more than five times as often as a lexicographic rule on the
+same weights. & Principles weigh; they do not rank. \\
+\addlinespace
+More law than Hart & A positive determinacy advantage over the
+hierarchical Hart baseline. & His answer to the ``too little law''
+worry. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The first requirement is that the weights be \textit{well-defined}. Unless at least two principles carry genuine weight, the aggregation
+formula is vacuous. A model whose weights collapse to nothing, or onto a
+single dominant principle, is not testing Berman's theory of a plurality of
+weighted principles.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at
+322--24.} Operationally, at least two principles must carry weight above a
+small cutoff.
+
+This is a minimum, not an achievement. Its virtue is that it cannot be gamed,
+and clearing it earns no credit toward the other three requirements. Nor
+should it be confused with a demand that the weights be spread out or
+graded, a separate and non-required property discussed below.
+
+The second requirement is that the weights be \textit{noise-tolerant}: small
+errors in how heavily each principle counts must not flip the verdict in too
+many cases. This is Berman's answer to Stephen Perry, who objected that
+aggregation demands a precision that messy practice cannot supply; Berman
+replies that rough weights suffice.\footnote{Berman, \textit{Practices},
+\textit{supra} note 7, at 328--30; see Perry, \textit{supra} note 9, at 794.} Made quantitative, the requirement is that the weights tolerate at
+least $\pm 0.07$ of Gaussian perturbation before more than one case in five
+changes its verdict, that the critical uncertainty $\sigma^{*}$ be at least
+$0.07$.
+
+The floor is not arbitrary, and its provenance is worth stating exactly. It is
+set from the stipulated engine's own tolerance across a grid of
+forty-five configurations, three weight distributions by three principle
+counts by five thresholds, each cell a thirty-seed mean. Those cell means run
+from $0.071$ to $0.134$ and average $0.090$, and the lowest of them falls at
+nine principles, moderate weights, and $\tau = 0.2$, the configuration
+this Article uses throughout. The floor sits just below that
+lowest cell mean.
+
+The floor does not bound the engine from below on every run, and
+the difference matters because the requirement is scored seed by seed while
+the grid reports means. On larger samples of the same engine at the same
+configuration, the per-seed critical uncertainty falls below $0.07$ on
+eighteen of thirty seeds in one run and twenty of thirty in another, and the
+lowest cell mean's own confidence interval runs from $0.068$ to $0.073$, so
+the floor sits inside it.\footnote{The two runs are the eight-hundred-case
+correlation baseline and the thousand-case magnitude-probe run, at mean
+$\sigma^{*}$ of $0.069$ and $0.068$ respectively. Neither is a defect in the
+engine; both are the same quantity measured on more cases, where seed-to-seed
+variation is visible rather than averaged away.} So the requirement asks an
+emergent mechanism to be about as noise-tolerant as the stipulated engine is
+on average at its least tolerant setting, a weaker benchmark than
+asking it to beat the engine's worst run, and it should not be read as the
+stronger one. It remains internal to the model rather than externally
+stipulated, and a lower floor would only make it easier to clear.
+
+The third requirement has no counterpart in earlier treatments of the
+theory, and it is perhaps the one that most directly captures what makes
+principled positivism the theory it is. The model must be \textit{magnitude-weighing}: it must respond to how strongly
+each principle applies, not merely to which principle ranks highest. Berman is explicit that his principles weigh rather
+than rank, contributing more or less force rather than standing in a fixed
+order of priority.\footnote{Berman, \textit{Practices}, \textit{supra} note
+7, at 311--13, 333.}
+
+The operational test is the \textit{magnitude probe}, used throughout the
+Article under that name. Holding every sign and every within-case rank fixed,
+it perturbs only the magnitudes of the activations and asks how often the
+verdict changes. A rule that
+merely ranks is invariant to such a perturbation; the weighted sum is not.
+On that probe the requirement is that the weighted sum change its verdict
+more than five times as often as a lexicographic rule does on the same
+weights.
+
+Two
+things here are worth separating. That the lexical rule scores near zero is
+partly definitional: the probe holds the ranks fixed, and a rule that
+consults only ranks is blind to it. What is not definitional is that the
+weighted sum responds substantially. Under a magnitude-only perturbation the
+ungated sum changes its verdict at roughly ten times the lexical rule's
+residual rate, and the gated sum this Article runs at roughly twenty times,
+the gate adding the cases a magnitude change pushes across the determinacy
+threshold rather than across zero.\footnote{Scores of $0.0256$ ungated and
+$0.0502$ gated against the lexical rule's $0.0026$, thirty-seed means. The
+requirement is scored on the gated rule, so the ratio it actually applies is
+the larger one; the ungated ratio is reported alongside it because it isolates
+changes of direction alone.} It is that responsiveness the requirement
+credits. Because the five-fold bar sits well below either gap, the bar is a
+conservative one, perhaps markedly so.
+
+The fourth requirement is that the model deliver \textit{more law than
+Hart}: that it decide strictly more cases determinately than a Hartian
+baseline that lets the law run out wherever the principles it consults fail to
+converge. This is Berman's answer to the Dworkinian worry that positivism yields too
+little law. Where a Hartian baseline finds a gap, summing
+weighted forces finds law.
+
+Against the hierarchical Hart the requirement is adjudicated: that is the
+charitable baseline, sorting the principles into tiers by category and
+deciding a case at the highest tier holding any active principle, and only
+where enough of that tier's active principles point the same way. Where they
+do not, the law runs out, because the tiers below are never reached. Nothing
+in it ranks principles by weight. That separates it from the
+single-principle rule the third requirement uses as its foil. On that
+comparison the model's
+advantage is about $+0.27$, and positive on every seed. Its size is a finding, not a fixed bar, and it would presumably move with
+the case distribution.
+
+Against a consensus
+Hart, which decides only where enough of the principles in play point the
+same way, the advantage is reported as a curve rather than scored. It runs from
+slightly negative ($-0.02$) at a fifty-percent consensus to $+0.27$, $+0.59$, and $+0.79$ as
+the consensus bar rises to sixty, seventy, and eighty percent. Deliberately,
+the single negative cell is included. It arises at the competitor's loosest
+bar, where the rival decides more cases than at any other setting on this
+battery, and not at its most demanding. It is not a failure of the
+requirement, which is scored against the hierarchical Hart.\footnote{The Hart baseline's tiers come from
+the exogenous category map, textual on top, structural below, moral below
+that, never from any emergent weight, so the comparison does not import the
+model's own output into its competitor.}
+
+Two properties that earlier treatments folded in as requirements are
+measured here but not scored. One is weight \textit{gradation}, whether the weights are spread out rather
+than clustered. On it the mechanisms differ sharply, though not in the way a
+single figure suggests. The uptake weights have a coefficient of variation
+near $0.90$ and the reliance weights near $0.24$. The larger figure,
+though, records the live/dead cut rather than gradation: it measures the
+distance between five live principles and four zeros. Among the five that
+survive, the uptake weights run from $0.79$ to $1.00$ and their coefficient of
+variation is $0.09$, making them the most tightly clustered of the four
+mechanisms rather than the most spread. Reliance applies no cut, so its $0.24$
+is dispersion among nine live weights and the two figures do not measure the
+same thing. Both are reported descriptively.
+The other is \textit{correlation benefit}, whether performance improves under
+the correlated activations of realistic cases, as it does.
+
+Because Berman's theory demands neither, neither is a requirement: he
+permits principles to carry equal weight,\footnote{Berman, \textit{Practices},
+\textit{supra} note 7, at 323--24 (the account does not require that the
+principles have varied weights).} and he nowhere claims his model needs
+correlation to work. The demotion changes the attribution to Berman, not the
+roster of surviving models: no mechanism's verdict on the four requirements
+turns on it.
+
+Held to these four requirements across thirty seeds, every mechanism
+passes, one of them only barely. Part VI reports the margins and what the
+near-miss shows. The requirements are therefore co-satisfiable, and they
+are so because the verdicts rest on the four alone. Gradation and
+correlation benefit, measured but not scored, carry no pass-or-fail weight.
+Differences among mechanisms on those two descriptive measures therefore
+leave every survival verdict untouched.
+
+These four requirements are neither arbitrary nor exhaustive. Others could
+be specified (stability under changes to the case base, robustness to
+adversarial manipulation, agreement with human intuitions about particular
+cases), and the analysis would probably be richer for testing them. The four here seem the ones most directly tied to Berman's own claims and to
+the structural needs of aggregation.
+
+Two limits bear emphasis. The cases
+are synthetic. Whether real adjudication grounds its weights through any of
+these mechanisms is an empirical question this Article frames but does not
+resolve, and one that would likely require coding actual judicial opinions
+to answer.
+And the determinacy threshold is a modeling choice; the analysis reports
+the model's sensitivity to $\tau$, which
+accounts for most of the variation in $\sigma^{*}$, rather than treating any value of $\tau$ as canonical. Results reported at
+one $\tau$ should not be read as holding at another.
+
+The framework is now in place. Part IV turns to the stipulated engine and
+establishes that the weighted sum works well when given faithful weights, and that several of its properties are not contingent findings but
+theorems. The Parts that follow then ask where those weights come from, likely the
+harder question.

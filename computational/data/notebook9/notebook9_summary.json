@@ -1,0 +1,219 @@
+{
+  "expA": {
+    "R1": 1.0,
+    "R2": 0.8666666666666667,
+    "R3": 1.0,
+    "R4": 1.0,
+    "sigma_min": 0.06703703703703702,
+    "sigma_median": 0.08469950738916254,
+    "mean_margin": 0.2843333333333333,
+    "cv": 0.15465812071717513,
+    "mean_weight": {
+      "text": 0.5908521071759015,
+      "original": 0.5812256531298586,
+      "precedent": 0.6218536399646416,
+      "structure": 0.5708774261779054,
+      "federalism": 0.6347578340605082,
+      "dignity": 0.8197138294928852,
+      "equality": 0.8467551827881089,
+      "liberty": 0.7660478515273256,
+      "welfare": 0.802424612506621
+    }
+  },
+  "expB": {
+    "invocation_after": 0.0,
+    "retained": 0.46626850914606965,
+    "deposit_frac": 0.7022083333333334,
+    "sp_holding_reliance": 0.8694444444444444
+  },
+  "expC": {
+    "disavowal_immediate": 0.0,
+    "desuetude_halflife": 900.0,
+    "desuetude_final": 0.2494806711367211
+  },
+  "expD": {
+    "drift_appointment": 0.08464311516305344,
+    "drift_static": 0.0
+  },
+  "expE": {
+    "passes": {
+      "uptake": {
+        "R1": 1.0,
+        "R2": 1.0,
+        "R3": 1.0,
+        "R4": 1.0
+      },
+      "reliance": {
+        "R1": 1.0,
+        "R2": 1.0,
+        "R3": 1.0,
+        "R4": 1.0
+      },
+      "appointment": {
+        "R1": 1.0,
+        "R2": 0.8666666666666667,
+        "R3": 1.0,
+        "R4": 1.0
+      },
+      "strategic": {
+        "R1": 1.0,
+        "R2": 1.0,
+        "R3": 1.0,
+        "R4": 1.0
+      }
+    },
+    "corr": {
+      "uptake-reliance": -0.7833494518006402,
+      "uptake-strategic": 0.3133397807202561,
+      "uptake-appointment": -0.7485339206095007,
+      "reliance-strategic": 0.15,
+      "reliance-appointment": 0.9333333333333332,
+      "strategic-appointment": -0.08333333333333334
+    },
+    "appointment_uptake_sp": -0.7485339206095007,
+    "reliance_appointment_sp": 0.9333333333333332,
+    "all_four_pass": true
+  },
+  "expF": {
+    "any_disagree_corr": 0.36096,
+    "any_disagree_ind": 0.31762,
+    "opposite_determinate_corr": 0.2722,
+    "opposite_determinate_ind": 0.19922,
+    "reliance_appointment_disagree": 0.0178,
+    "uptake_reliance_disagree": 0.35312,
+    "n": 50000
+  },
+  "expG": {
+    "worked": {
+      "TVA_Burger": {
+        "uptake": 1.4992,
+        "reliance": 0.8214,
+        "strategic": 0.7414,
+        "appointment": 0.8363
+      },
+      "Obergefell": {
+        "uptake": -1.154,
+        "reliance": 0.7084,
+        "strategic": -0.1404,
+        "appointment": 0.5094
+      }
+    },
+    "perturb": {
+      "0.05": 1.0,
+      "0.1": 0.9913,
+      "0.2": 0.87475,
+      "0.3": 0.7437
+    },
+    "mapping_obergefell_ok": 6,
+    "mapping_tva_ok": 13,
+    "mapping_tva_total": 13,
+    "tau0": {
+      "correlated": {
+        "any_disagree": 0.36096,
+        "opposite_determinate": 0.36096
+      },
+      "independent": {
+        "any_disagree": 0.31762,
+        "opposite_determinate": 0.31762
+      }
+    },
+    "tier_balance": {
+      "full_2_3_4": {
+        "any_disagree": 0.36096,
+        "uptake_reliance": 0.35312
+      },
+      "balanced_2_2_2": {
+        "any_disagree": 0.30336,
+        "uptake_reliance": 0.2826
+      },
+      "balanced_2_2_2_alt": {
+        "any_disagree": 0.29652,
+        "uptake_reliance": 0.27596
+      },
+      "moral_cut_to_2": {
+        "any_disagree": 0.24912,
+        "uptake_reliance": 0.23302
+      }
+    }
+  },
+  "expH": {
+    "taus": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.5,
+      0.8,
+      1.2
+    ],
+    "divergence_by_tau": {
+      "correlated": [
+        0.36096,
+        0.40486,
+        0.44482,
+        0.4776,
+        0.52994,
+        0.5636,
+        0.53942
+      ],
+      "independent": [
+        0.31762,
+        0.37602,
+        0.42514,
+        0.46456,
+        0.50258,
+        0.49074,
+        0.39816
+      ]
+    },
+    "signal": {
+      "uptake": {
+        "bottom_decile": 0.5276,
+        "top_decile": 0.1584,
+        "auc": 0.6355645624215357
+      },
+      "reliance": {
+        "bottom_decile": 0.5466,
+        "top_decile": 0.0056,
+        "auc": 0.7110671062555713
+      },
+      "strategic": {
+        "bottom_decile": 0.8856,
+        "top_decile": 0.0,
+        "auc": 0.9007240671790043
+      },
+      "appointment": {
+        "bottom_decile": 0.7228,
+        "top_decile": 0.0018,
+        "auc": 0.756692234786688
+      }
+    },
+    "culture": {
+      "shared_mean": 0.8333333333333333,
+      "shared_sd": 0.09610468828892328,
+      "decoupled_mean": 0.30208333333333337,
+      "decoupled_sd": 0.4511895927557628,
+      "shared_per_seed": [
+        0.9833333333333333,
+        0.8333333333333333,
+        0.8833333333333333,
+        0.8666666666666667,
+        0.7,
+        0.8666666666666667,
+        0.8666666666666667,
+        0.6666666666666667
+      ],
+      "decoupled_per_seed": [
+        0.5333333333333333,
+        -0.2333333333333333,
+        0.13333333333333333,
+        0.48333333333333334,
+        0.7666666666666667,
+        -0.5333333333333333,
+        0.8499999999999999,
+        0.41666666666666663
+      ]
+    }
+  },
+  "self_check_passed": true
+}

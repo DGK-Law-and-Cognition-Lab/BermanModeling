@@ -1,0 +1,11 @@
+function,family,in_theory,determinacy,nonlexicality,agree_with_SAW
+SAW (tau=0.2),cardinal,True,0.8634499999999999,0.05130625000000001,1.0
+SAW-sign,cardinal,True,1.0,0.025844270833333332,0.8634499999999999
+SAW-L1,cardinal,True,1.0,0.025844270833333332,0.8634499999999999
+Nonlinear,cardinal,True,1.0,0.07459791666666667,0.7608833333333334
+vote-count,ordinal,True,1.0,0.0,0.7652333333333333
+weighted-vote,ordinal,True,1.0,0.0,0.7653666666666668
+Borda,ordinal,True,0.9964000000000002,0.0,0.7952166666666667
+median-sign,ordinal,True,1.0,0.0,0.7652333333333333
+lexicographic,lexical(FOIL),False,1.0,0.0024828124999999998,0.5769333333333333
+cascade,lexical(FOIL),False,1.0,0.0,0.5614666666666667

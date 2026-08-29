@@ -1,0 +1,10 @@
+principle,category,weight
+text,textual,0.5908521071759015
+original,textual,0.5812256531298586
+precedent,structural,0.6218536399646416
+structure,structural,0.5708774261779054
+federalism,structural,0.6347578340605082
+dignity,moral,0.8197138294928852
+equality,moral,0.8467551827881089
+liberty,moral,0.7660478515273256
+welfare,moral,0.802424612506621

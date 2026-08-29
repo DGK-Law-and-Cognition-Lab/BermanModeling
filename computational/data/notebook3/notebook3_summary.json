@@ -1,0 +1,89 @@
+{
+  "exp1": {
+    "converged_frac": 1.0,
+    "mean_moved": 0.24701683968305588,
+    "mean_cv": 0.3527745953857767,
+    "mean_gap": 0.47558097610871003,
+    "cv_correlated": 0.3303402955024441,
+    "cv_independent": 0.345558694217536,
+    "cv_null": 0.0005864479471246057,
+    "const_lr_converged": false,
+    "pattern_spearman": 0.7458333333333333,
+    "init_spearman": -0.06666666666666667,
+    "meth_struct": 0.914071261882782,
+    "meth_moral": 0.5968124270439148,
+    "neut_struct": 0.5935444831848145,
+    "neut_moral": 0.9340324997901917
+  },
+  "exp2": {
+    "R1": 1.0,
+    "R2": 1.0,
+    "R3": 1.0,
+    "R4": 1.0,
+    "mean_sigma": 0.0862652738290167,
+    "mean_margin": 0.2832916666666667,
+    "mean_nl_saw": 0.04964973958333333,
+    "mean_nl_lex": 0.002864583333333334
+  },
+  "exp3": {
+    "struct": {
+      "uptake": {
+        "cv": 0.9032199710381612,
+        "gap": 0.883680025556814,
+        "entropy": 1.6050835835303565,
+        "gini": 0.4726125023483844,
+        "n_bins": 2.7,
+        "pooled_dBIC": 1695.9376871904476,
+        "R1": 1.0,
+        "R2": 1.0,
+        "R3": 1.0,
+        "R4": 1.0
+      },
+      "reliance": {
+        "cv": 0.24098690906097156,
+        "gap": 0.35404375464898163,
+        "entropy": 2.1646260657830974,
+        "gini": 0.1311967704832628,
+        "n_bins": 2.7,
+        "pooled_dBIC": 206.08254957027378,
+        "R1": 1.0,
+        "R2": 1.0,
+        "R3": 1.0,
+        "R4": 1.0
+      },
+      "strategic": {
+        "cv": 0.3527745953857767,
+        "gap": 0.47558097610871014,
+        "entropy": 2.133673880186693,
+        "gini": 0.18957764391685397,
+        "n_bins": 3.2333333333333334,
+        "pooled_dBIC": 365.85240810593405,
+        "R1": 1.0,
+        "R2": 1.0,
+        "R3": 1.0,
+        "R4": 1.0
+      }
+    },
+    "corr": {
+      "uptake-reliance": {
+        "spearman_meanvec": -0.7833494518006402,
+        "pearson_meanvec": -0.9817715337352656,
+        "spearman_perseed_mean": -0.6806436347867785,
+        "spearman_perseed_sd": 0.24790434779681791
+      },
+      "uptake-strategic": {
+        "spearman_meanvec": 0.3133397807202561,
+        "pearson_meanvec": 0.5485097925049911,
+        "spearman_perseed_mean": 0.3791991605568284,
+        "spearman_perseed_sd": 0.3780978664750657
+      },
+      "reliance-strategic": {
+        "spearman_meanvec": 0.15,
+        "pearson_meanvec": -0.4539373944597988,
+        "spearman_perseed_mean": -0.2011111111111111,
+        "spearman_perseed_sd": 0.3875118476882551
+      }
+    }
+  },
+  "self_check_passed": true
+}

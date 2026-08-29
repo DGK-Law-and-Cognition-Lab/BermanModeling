@@ -1,0 +1,32 @@
+{
+  "T1": {
+    "validation_contradiction_rate": 1.0,
+    "saw_single_valued": true,
+    "saw_contradiction_rate": 0.0,
+    "antecedent_frequency": {
+      "independent": 0.45415000000000005,
+      "category_correlated": 0.10543333333333334,
+      "fully_correlated": 0.0
+    }
+  },
+  "T2": {
+    "conferred_identical": true,
+    "uptake_differs": true,
+    "conferred_L1_diff": 0.0
+  },
+  "T3": {
+    "lexical_thresholdless": 0.0,
+    "lexical_library": 0.0023541666666666667,
+    "saw_score": 0.022947916666666665
+  },
+  "T4": {
+    "max_abs_error_closed_form": 0.0062128270946457675,
+    "sigma_uniform": 1.1284370918390754,
+    "sigma_high": 1.1448331308027209
+  },
+  "T5": {
+    "counterexample_saw": 1,
+    "counterexample_count": -1,
+    "disagreement_rate": 0.1536
+  }
+}

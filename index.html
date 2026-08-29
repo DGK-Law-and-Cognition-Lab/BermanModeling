@@ -2,36 +2,317 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Moved: More Determinate and Less Settled</title>
-<link rel="canonical" href="https://dgkamper.github.io/berman-modeling/">
-<meta http-equiv="refresh" content="3;url=https://dgkamper.github.io/berman-modeling/">
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>More Determinate and Less Settled</title>
+<meta name="description" content="A computational test of Mitchell Berman's principled positivism. David G. Kamper, UCLA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#16161d;--body:#3a3a4a;--muted:#6f6f85;--accent:#7c1d1d;--bg:#fbfaf8;--border:#e2ded7}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#ecebe7;--body:#c3c2bd;--muted:#8f8e9e;--accent:#d98b8b;--bg:#14141a;--border:#2e2e3a}}
+:root{
+  --ink:#16161d; --body:#3a3a4a; --muted:#6f6f85; --accent:#7c1d1d;
+  --bg:#fbfaf8; --card:#fff; --border:#e2ded7; --rule:#d8d3ca;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#ecebe7; --body:#c3c2bd; --muted:#8f8e9e; --accent:#d98b8b;
+    --bg:#14141a; --card:#1c1c24; --border:#2e2e3a; --rule:#33333f;
+  }
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg);color:var(--body);
- line-height:1.65;font-size:17px;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:24px}
-.card{max-width:620px}
-h1{font-family:'Crimson Pro',Georgia,serif;font-size:2rem;font-weight:700;color:var(--ink);
- line-height:1.2;margin-bottom:16px;letter-spacing:-.02em}
-p{margin-bottom:14px}
-a{color:var(--accent)}
-.go{display:inline-block;margin-top:10px;padding:11px 22px;background:var(--accent);color:#fff;
- border-radius:6px;font-weight:600;text-decoration:none}
-.small{font-size:.9rem;color:var(--muted);margin-top:22px;border-top:1px solid var(--border);padding-top:16px}
+body{font-family:'Source Sans 3',-apple-system,BlinkMacSystemFont,sans-serif;
+  color:var(--body);background:var(--bg);line-height:1.65;font-size:17px;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:830px;margin:0 auto;padding:0 24px}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--accent)}
+h1,h2,h3{font-family:'Crimson Pro',Georgia,serif;color:var(--ink);line-height:1.2}
+header{padding:76px 0 38px;border-bottom:1px solid var(--rule);margin-bottom:44px}
+header h1{font-size:2.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+.sub{font-family:'Crimson Pro',Georgia,serif;font-size:1.3rem;font-style:italic;
+  color:var(--muted);margin-bottom:22px}
+.author{font-size:1.06rem;font-weight:600;color:var(--ink)}
+.affil{font-size:.97rem;color:var(--muted)}
+.status{margin-top:20px;font-size:.9rem;color:var(--muted);
+  border-left:3px solid var(--rule);padding-left:14px}
+section{margin-bottom:52px}
+h2{font-size:1.62rem;font-weight:600;margin-bottom:16px;
+  padding-bottom:7px;border-bottom:1px solid var(--rule)}
+h3{font-size:1.16rem;font-weight:600;margin:26px 0 8px}
+p{margin-bottom:15px}
+.lede{font-size:1.06rem}
+.eq{font-family:var(--mono);background:var(--card);border:1px solid var(--border);
+  border-radius:5px;padding:12px 16px;margin:16px 0;text-align:center;
+  color:var(--ink);font-size:1.02rem}
+.finding{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:5px;padding:20px 22px;margin-bottom:18px}
+.finding h3{margin-top:0}
+.tablewrap{overflow-x:auto;margin:18px 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;min-width:520px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-weight:600;color:var(--ink);border-bottom:2px solid var(--rule);
+  font-size:.83rem;text-transform:uppercase;letter-spacing:.05em}
+td.num{font-family:var(--mono);white-space:nowrap;color:var(--ink)}
+figure{margin:26px 0}
+figure img{width:100%;height:auto;border:1px solid var(--border);border-radius:5px;
+  background:#fff;display:block}
+figcaption{font-size:.88rem;color:var(--muted);margin-top:9px;line-height:1.5}
+figcaption b{color:var(--ink);font-weight:600}
+.actions{display:flex;gap:11px;flex-wrap:wrap;margin:22px 0 4px}
+.btn{display:inline-flex;align-items:center;padding:10px 19px;border-radius:6px;
+  font-size:.92rem;font-weight:600;border:1.5px solid transparent;
+  transition:background .15s,border-color .15s}
+.btn:hover{border-bottom-width:1.5px}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary:hover{opacity:.88;color:#fff}
+.btn-outline{background:var(--card);color:var(--ink);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:560px){.btn{width:100%;justify-content:center}}
+.cite{background:var(--card);border:1px solid var(--border);border-radius:6px;
+  padding:16px 20px;overflow-x:auto}
+.cite pre{font-family:var(--mono);font-size:.84rem;line-height:1.55;white-space:pre-wrap}
+code{font-family:var(--mono);font-size:.9em;color:var(--ink)}
+.note{font-size:.9rem;color:var(--muted);font-style:italic}
+footer{border-top:1px solid var(--rule);padding:26px 0 60px;margin-top:20px;
+  font-size:.88rem;color:var(--muted)}
+ul{margin:0 0 15px 20px}
+li{margin-bottom:6px}
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>This page has moved</h1>
-  <p>The computational test of Mitchell Berman's principled positivism now lives at its
-  current home, along with the paper, the notebooks, and the data.</p>
-  <p><a class="go" href="https://dgkamper.github.io/berman-modeling/">Go to the project page</a></p>
-  <p class="small">The version formerly at this address was a March 2026 draft. Its framing and
-  several of its reported figures have since been superseded and should not be cited.
-  You will be redirected automatically.</p>
+<div class="wrap">
+
+<header>
+  <h1>More Determinate and Less Settled</h1>
+  <div class="sub">A computational test of principled positivism</div>
+  <div class="author">David G. Kamper</div>
+  <div class="affil">University of California, Los Angeles &middot; University of Chicago Law School</div>
+  <div class="actions">
+    <a class="btn btn-primary" href="paper/main.pdf">Read the paper (PDF)</a>
+    <a class="btn btn-outline" href="#supplement">Notebooks and data</a>
+  </div>
+  <div class="status">Working draft, August 2026. Comments welcome at
+    <a href="mailto:davidgkamper@ucla.edu">davidgkamper@ucla.edu</a>.</div>
+</header>
+
+<section>
+  <h2>The question</h2>
+  <p class="lede">Mitchell Berman's principled positivism holds that legal content is fixed
+  by a weighted balance of legal principles, each contributing force in proportion to its
+  weight and to how strongly the facts of a case activate it.</p>
+  <div class="eq">F = &Sigma;<sub>i</sub> w<sub>i</sub> &middot; a<sub>i</sub></div>
+  <p>A principle's <b>weight</b> is how much it counts in the legal system generally. Its
+  <b>activation</b> is how strongly it bears on the case at hand. The theory says the weights
+  are grounded in legal practice, but it does not say what practice is, or how a pattern of
+  practice fixes a number. This project gives the account its first systematic computational
+  test, implementing it faithfully, varying its parameters across ranges no thought experiment
+  could canvass, and measuring the results against what the theory itself requires.</p>
+</section>
+
+<section>
+  <h2>Two findings</h2>
+
+  <div class="finding">
+    <h3>The formal apparatus is sound</h3>
+    <p>Given faithful weights, the weighted sum does what Berman says it does. Its sharpest
+    result holds before any weight is tuned: where a Hartian validation rule contradicts itself,
+    certifying both sides of a genuine conflict at once, the weighted sum returns a single
+    verdict, because summing weighted forces yields one net force with one sign. It also
+    tolerates rough weights, weighs magnitude rather than ranking by fixed priority, and leaves
+    less law unsettled than a tiered Hartian hierarchy. Several of these properties hold as
+    theorems rather than as artifacts of a particular run.</p>
+  </div>
+
+  <div class="finding">
+    <h3>That soundness rests on an appeal to practice the theory leaves underspecified</h3>
+    <p>Four mechanisms by which practice might confer weight all clear every requirement the
+    theory imposes. Yet they ground the principles into three distinct weight structures, and
+    those structures decide about a third of cases differently. Practice is not unitary, and
+    which construal of it governs can change what the law is.</p>
+  </div>
+
+  <p>Principled positivism therefore does not resolve the indeterminacy it inherited from Hart
+  and Dworkin. It <b>relocates</b> it, from how principles combine, which it handles well, to
+  which practice grounds the weights, and to the prior question of how legal grounds themselves
+  change.</p>
+</section>
+
+<section>
+  <h2>The four requirements</h2>
+  <p>Every mechanism and every aggregation rule is held to the same four requirements, each
+  drawn from something Berman claims or commits to, and each scored seed by seed across thirty
+  random seeds.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Requirement</th><th>Operational test</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>Well-defined</td><td>At least two principles carry weight above a small cutoff</td>
+        <td>The theory's plurality of weighted principles</td></tr>
+      <tr><td>Noise-tolerant</td><td>Critical uncertainty &sigma;* &ge; 0.07</td>
+        <td>"Rough weights suffice," his answer to Perry</td></tr>
+      <tr><td>Magnitude-weighing</td><td>On a magnitude-only perturbation, the sum changes its
+        verdict more than five times as often as a lexicographic rule</td>
+        <td>Principles weigh; they do not rank</td></tr>
+      <tr><td>More law than Hart</td><td>A positive determinacy advantage over the hierarchical
+        Hart baseline</td><td>His answer to the "too little law" worry</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Weight gradation and correlation benefit are measured but are not
+  requirements. Berman's account, unlike Dworkin's, permits principles to carry equal weight,
+  so no pass-or-fail verdict may depend on them.</p>
+</section>
+
+<section>
+  <h2>The four mechanisms</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Mechanism</th><th>Weight is conferred by</th><th>Where the weights lean</th></tr></thead>
+    <tbody>
+      <tr><td>Uptake</td><td>How often the bench invokes a principle</td>
+        <td>Textual and structural, with the moral principles at zero</td></tr>
+      <tr><td>Reliance</td><td>Embedding in the holdings that go on relying on it</td>
+        <td>Moral</td></tr>
+      <tr><td>Strategic</td><td>Judges adapting to which arguments move their colleagues</td>
+        <td>Structural</td></tr>
+      <tr><td>Appointment</td><td>Bench turnover, read out through surviving holding-support</td>
+        <td>Moral</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Reliance and appointment correlate at <b>+0.93</b>, closely enough that the two are in
+  effect one structure. Uptake opposes both, at &minus;0.78 and &minus;0.75. So the four
+  dynamics realize three distinct structures, not four.</p>
+</section>
+
+<section>
+  <h2>Three Harts, kept distinct</h2>
+  <p>The argument runs three separate Hartian comparisons, and they are never conflated.</p>
+  <ul>
+    <li><b>A Hartian validation rule</b> is the contradiction foil. It asks of each standard
+      only whether it is valid and which way it points, so on a genuine conflict it certifies
+      both sides at once.</li>
+    <li><b>The hierarchical Hart</b> is the determinacy baseline. It sorts the principles into
+      ranked tiers and decides at the highest tier holding an applicable principle, and only
+      where enough of that tier's principles point the same way.</li>
+    <li><b>A consensus Hart</b> is a flat share bar, deciding when a fixed share of the
+      principles agree.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Results</h2>
+  <p>Every figure below is computed on synthetic cases with independent activations, the
+  conservative baseline, so each should be read as a floor. Correlation only improves the
+  model's performance. The one exception is the margin over Hart, which reverses under
+  category-correlated activations and is reported as such.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Finding</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Determinacy, general</td><td class="num">86.2%</td></tr>
+      <tr><td>Determinacy, conflict cases</td><td class="num">79.2%</td></tr>
+      <tr><td>Validation rule contradicts itself on directly opposed cases</td><td class="num">100%</td></tr>
+      <tr><td>Weighted sum contradicts itself</td><td class="num">0%</td></tr>
+      <tr><td>Critical uncertainty &sigma;*, mean</td><td class="num">0.090</td></tr>
+      <tr><td>&sigma;* under category correlation</td><td class="num">0.069 &rarr; 0.156</td></tr>
+      <tr><td>Margin over the hierarchical Hart</td><td class="num">+0.272</td></tr>
+      <tr><td>Magnitude probe, sum against a lexical rule</td><td class="num">9.7&times;</td></tr>
+      <tr><td>Equal weights against a vote-count</td><td class="num">15.4%</td></tr>
+      <tr><td>Four mechanisms, different verdicts</td><td class="num">36.1%</td></tr>
+      <tr><td>Four mechanisms, opposite determinate verdicts</td><td class="num">27.2%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <figure>
+    <img src="assets/F1_static_saw.png" alt="Static model results" loading="lazy">
+    <figcaption><b>Figure 1.</b> The static model. Determinacy against the threshold, the
+    tolerance for weight error, and the comparison against the Hartian baselines.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/F2_practice_not_unitary.png" alt="Four mechanisms, three structures" loading="lazy">
+    <figcaption><b>Figure 2.</b> Practice is not unitary. Each column is one mechanism's
+    emergent weight vector. Reliance and appointment converge; uptake opposes both.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/F3_threshold_choice.png" alt="Threshold sensitivity" loading="lazy">
+    <figcaption><b>Figure 3.</b> The determinacy threshold is a modeling choice rather than a
+    quantity the theory fixes. The curve is smooth and monotone, with no privileged value.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/F4_sensitivity.png" alt="Global sensitivity analysis" loading="lazy">
+    <figcaption><b>Figure 4.</b> Global sensitivity. Variance in the output apportioned among
+    the threshold, weight dispersion, activation correlation, and sparsity.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/F5_cardinal_ordinal.png" alt="Aggregation rules by class" loading="lazy">
+    <figcaption><b>Figure 5.</b> Ten aggregation rules sorted by a magnitude-only probe.
+    Cardinal rules score 0.023 to 0.075, every ordinal rule exactly 0.000, and the lexical
+    foils 0.0024 and below. Ordinal aggregation is a coherent rival; only the lexical rules
+    are the foil the theory is defined against.</figcaption>
+  </figure>
+</section>
+
+<section id="supplement">
+  <h2>The computational supplement</h2>
+  <p>Ten notebooks, a shared engine, and the saved outputs behind every number above. All
+  results were verified in Google Colab, run in dependency order, with each notebook carrying
+  its own self-checks.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Notebook</th><th>What it establishes</th></tr></thead>
+    <tbody>
+      <tr><td class="num"><a href="computational/notebooks/0_static_properties.ipynb">0</a></td><td>Static properties: determinacy, noise tolerance, the Hart comparisons, the magnitude probe</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/1_abm_emergence.ipynb">1</a></td><td>Uptake: weights emerging from a simulated bench, the live/dead cut, the cluster gap</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/2_reliance_mechanism.ipynb">2</a></td><td>Reliance: weight from embedding in holdings</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/3_strategic_mechanism.ipynb">3</a></td><td>Strategic adaptation, trained by REINFORCE</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/4_threshold.ipynb">4</a></td><td>The determinacy threshold swept from 0 to 0.30</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/5_aggregation_functions.ipynb">5</a></td><td>Ten aggregation rules across cardinal, ordinal, and lexical classes</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/6_global_sensitivity.ipynb">6</a></td><td>Sobol variance decomposition over four inputs</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/7_analytical_results.ipynb">7</a></td><td>The five theorems and the scope each is proved under</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/8_figures.ipynb">8</a></td><td>Rebuilds every figure, table, and caption</td></tr>
+      <tr><td class="num"><a href="computational/notebooks/9_appointment_embedding.ipynb">9</a></td><td>Appointment, and the decoupling test against reliance</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Every notebook above is downloadable from this page, as is the
+  <a href="computational/data/">saved output</a> behind each number and the
+  <a href="paper/">LaTeX source</a> of the paper. To run them:</p>
+  <div class="eq" style="text-align:left">pip install -r requirements.txt</div>
+  <p class="note">Notebooks 0 and 7 should be run before 8, which reads their summary JSON.
+  The engine is <code>computational/berman_core.py</code>; it is duplicated inside
+  <code>notebooks/</code> so a Colab session can import it without a path fixup, and the two
+  copies are byte-identical.</p>
+</section>
+
+<section>
+  <h2>Citation</h2>
+  <div class="cite"><pre>@article{kamper2026determinate,
+  author = {Kamper, David G.},
+  title  = {More Determinate and Less Settled},
+  year   = {2026},
+  note   = {Manuscript}
+}</pre></div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    David G. Kamper &middot; University of California, Los Angeles &middot;
+    University of Chicago Law School &middot;
+    <a href="mailto:davidgkamper@ucla.edu">davidgkamper@ucla.edu</a><br><br>
+    I am grateful to Mitchell Berman for extensive discussions, and to Amin Ebrahimi Afrouzi
+    for insights on constitutional precedent analysis.<br><br>
+    Code and data are released under the MIT License. The manuscript text is not covered by
+    that license and remains the author's.
+  </div>
+</footer>
+
 </div>
 </body>
 </html>

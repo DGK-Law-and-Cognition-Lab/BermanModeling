@@ -1,0 +1,88 @@
+{
+  "exp0": {
+    "cardinal_min": 0.022947916666666665,
+    "ordinal_max": 0.0,
+    "lexical_max": 0.0023541666666666667
+  },
+  "exp0b": {
+    "n_configurations": 9,
+    "separated_in": 6,
+    "ratio_by_activation": {
+      "category": [
+        4.051697530864198,
+        4.421041731386559
+      ],
+      "fully": [
+        0.8615554884797263,
+        0.9713900694516432
+      ],
+      "independent": [
+        9.576554404145078,
+        9.800655737704918
+      ]
+    },
+    "fails_under": [
+      "fully"
+    ]
+  },
+  "exp1": {
+    "anchor": 0.15329166666666663,
+    "equal_indep": 0.15329166666666663,
+    "high_indep": 0.1783583333333333,
+    "fully": 0.028950000000000007,
+    "borda_equal": 0.16483333333333333,
+    "borda_high": 0.08982500000000002
+  },
+  "exp2": {
+    "meanF_disagree": 0.34980712156954313,
+    "meanF_agree": 1.027648780091781,
+    "minmass_disagree": 0.4366887516747099,
+    "minmass_agree": 0.32406131996251913,
+    "drate_small": 0.4038306451612903,
+    "drate_large": 0.0
+  },
+  "exp3": {
+    "ordinal_nonlex_max": 0.0,
+    "foil_determinacy": 1.0,
+    "saw_determinacy": 0.8634499999999999
+  },
+  "exp4": {
+    "hart_margin": 0.2682,
+    "critical_sigma": 0.06599887280336131
+  },
+  "exp2b": {
+    "overall_rate": 0.1642,
+    "rate_closer_half": 0.2993,
+    "rate_farther_half": 0.0291,
+    "share_in_closer": 0.9113885505481121,
+    "max_absF_disagree": 1.6073851909777734,
+    "max_absF_observed": 4.4373554533208965,
+    "share_above_1p5": 0.19155,
+    "n_disagree_above_1p5": 4,
+    "deciles_equalcount": [
+      0.4485,
+      0.39,
+      0.302,
+      0.204,
+      0.152,
+      0.0795,
+      0.0475,
+      0.0155,
+      0.003,
+      0.0
+    ],
+    "saw_determinacy": 0.8634499999999999,
+    "agree_restricted": {
+      "SAW-sign": 1.0,
+      "SAW-L1": 1.0,
+      "Nonlinear": 0.8812129634991411,
+      "vote-count": 0.8862508927365028,
+      "weighted-vote": 0.8864053120234718,
+      "Borda": 0.9209759298936439,
+      "median-sign": 0.8862508927365028,
+      "lexicographic": 0.6681722547146138,
+      "cascade": 0.6502596174262166
+    }
+  },
+  "self_check_passed": true
+}

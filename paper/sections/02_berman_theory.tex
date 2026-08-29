@@ -1,0 +1,456 @@
+% Authorship: Claude-drafted, author-revised
+\section{Berman's Principled Positivism}
+
+This Part reconstructs Berman's theory with the precision that
+computational implementation demands.\footnote{This reconstruction draws
+primarily from Berman, \textit{Practices}, \textit{supra} note 7.
+Berman develops the same principles-based account of legal content in two
+further works on which I also draw: Mitchell N.\ Berman, \textit{Our
+Principled Constitution}, 166 \textsc{U.\ Pa.\ L.\ Rev.}\ 1325 (2018)
+(arguing that the content of American constitutional law is fixed by a
+plurality of legal principles rather than by rules alone), and Mitchell
+N.\ Berman, \textit{Religious Liberty and the Constitution: Of Rules and
+Principles, Fixity and Change}, 26 \textsc{U.\ Pa.\ J.\ Const.\ L.}\ 851
+(2024) (showing how a plurality of principles can yield singular
+constitutional answers despite their plurality, and addressing the
+resolution of principle conflict beginning at 889).} Throughout, the goal is to operationalize Berman's philosophical arguments:
+to specify the model's claims, the parameters it requires, and the
+questions it leaves unresolved. For readers already familiar with the
+theory, the Section to attend to is likely the last one. It identifies the
+three points where the theory leaves its content open and singles out the
+one that motivates the computational analysis.
+
+\subsection{The Core Model}
+
+Berman's aggregation model comprises three conceptually distinct
+elements: \textit{principles}, \textit{weights}, and
+\textit{activations}.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 328--36.} Principles are legally
+fundamental norms that contribute to determining outcomes in particular
+cases. In two respects that matter for the aggregation model, they differ from
+rules.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 299--303. The principle/rule distinction
+has a long pedigree. See Ronald Dworkin, \textit{The Model of Rules}, 35
+\textsc{U.\ Chi.\ L.\ Rev.}\ 14, 25--29 (1967). Berman's account of how
+principles \textit{operate}, however, differs substantially from
+Dworkin's: for Berman, principles contribute weighted force through
+aggregation; for Dworkin, they provide reasons requiring interpretive
+judgment.} First, principles admit of degree. Where state action directly degrades
+personhood, ``respect human dignity'' applies strongly; where the
+connection is attenuated, weakly; where dignity is simply not implicated,
+not at all. By contrast, rules are categorical: their conditions either
+obtain or they do not. Second, principles can conflict without
+contradiction. When textual plain meaning opposes an outcome and human
+dignity favors it, both remain valid legal norms; they pull in opposite
+directions rather than generating logical inconsistency. Without that second feature, aggregation would not be possible.
+
+In U.S.\ constitutional and statutory law, examples include respect for
+textual plain meaning, honor for precedent, fidelity to original meaning,
+protection of human dignity, promotion of equal protection, protection
+of individual liberty, preservation of federalism, avoidance of absurd
+results, and promotion of general welfare.\footnote{These examples draw
+from Berman, \textit{Practices}, \textit{supra} note 7, at 330--36 and are
+illustrative rather than
+exhaustive. The computational model uses nine principles of these kinds,
+though not this exact list; Part III specifies the set.}
+
+Principles are \textit{constituted} by practice. On Berman's account, a norm counts as a legal principle not because it is
+morally true but because legal officials \textit{take it up}, systematically
+invoking it in their reasoning.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 329 (``Principles
+are constituted by the taking-up behaviors of the system's
+subscribers.''). This is what makes Berman a positivist: law's content
+depends on social facts about official practice, not on moral facts about
+what justice requires.} In that sense principled positivism remains positivist, despite trafficking
+in norms like dignity, equality, and liberty that look like moral values.
+On both counts, its source in practice and its independence from moral
+truth, the account differs from Dworkin's, where
+principles are objects of moral interpretation,\footnote{Dworkin, \textsc{Law's Empire},
+\textit{supra} note 4, at 225--75.} and from natural law theories, where
+they are moral truths accessible to reason.\footnote{See generally Mark C.\
+Murphy, \textsc{Natural Law in Jurisprudence and Politics} (2006).}
+
+The set of principles is not fixed. As judicial practice changes, so does
+the set: principles can enter the legal system as new norms gain traction
+and can exit as old ones lose it.\footnote{Exit is more
+complicated than mere disuse. A principle is embedded by the holdings that
+rely on it, so it can retain vitality even when it is not currently being
+invoked; and a principle may be affirmatively \textit{disavowed}, which
+Berman distinguishes from its merely falling into desuetude. See infra
+Section~II.D (developing these points, which bear on how the dynamics of
+practice are modeled).} Whether a norm qualifies as a legal principle in
+the first place depends on a \textit{threshold of uptake} (not the
+determinacy threshold introduced below): enough officials must
+invoke the norm for it to cross from a merely advocated position to a genuine
+legal principle.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 329.} That uptake threshold, too, is presumably practice-grounded.
+
+Weights represent each principle's context-invariant importance. Each
+principle has a weight $w_i \in [0,1]$. On such a scale, textual plain meaning might carry weight 0.85, reflecting
+its prominence across interpretive methodologies;
+even non-textualists acknowledge that plain meaning
+matters.\footnote{See William N.\ Eskridge Jr.\ \& Philip P.\ Frickey,
+\textit{Statutory Interpretation as Practical Reasoning}, 42 \textsc{Stan.\
+L.\ Rev.}\ 321, 353--57 (1990).} By the same measure, federalism might carry weight 0.65, reflecting its
+less central but still significant role.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 328--30. These illustrative values are not empirical claims about actual
+U.S.\ law. The computational analysis tests performance across diverse
+weight distributions precisely because the ``true'' values are
+unknown.} On Berman's account the weights are determined by practice: the more
+centrally a principle figures in legal reasoning across diverse cases,
+methodologies, and time periods, the higher its weight.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 329.}
+
+Activations represent how strongly a principle applies in a particular
+case. Formally, $a_i \in [-1, +1]$, where the magnitude indicates
+strength and the sign indicates direction: positive favors the proposed
+outcome, negative opposes it.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 330--32, 339--41.} When
+statutory text clearly supports a particular reading, the textual
+principle is strongly activated ($a \approx +0.9$). When the text is
+ambiguous, activation is weak ($a \approx +0.3$). When the statute does
+not address the question at all, activation is zero. Crucially, the sign captures the idea that a principle can favor
+\textit{either side} of a dispute.
+
+The distinction between weight and activation is central to the model and
+easily lost. A weight is constant across cases and an activation varies with them:
+the relative importance of precedent does not change from case to case, even
+though precedent's applicability does.\footnote{A judge who says ``precedent
+matters more in this case'' is, on Berman's account, saying that precedent is
+more strongly \textit{activated}, not that its \textit{weight} has changed.}
+
+Activation is where most disagreement tends to occur in hard
+cases.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 339 (``Perhaps the justices disagree about these
+principles' relative weights. More conspicuously and consequentially,
+however, they disagree about the extent to which each principle was
+activated.'').} When Justices divide in a statutory interpretation case,
+they typically agree about \textit{which} principles matter and roughly
+\textit{how important} each one is, and divide instead over \textit{how
+strongly} each principle applies to the facts, though the agreement on
+weight is a tendency, not a rule.\footnote{Berman does not claim the
+disagreement is ever \textit{solely} about activation. In \textit{TVA v.\
+Hill}, discussed below, he reads the Justices as having differed slightly
+about the \textit{weight} of the avoid-absurdity principle as well, not
+only its activation. Berman, \textit{Practices}, \textit{supra} note 7, at 338--42 \& figs.\ 8--9.} Here the Article's contribution comes into view. If officials largely
+converge on the weights and divide over activation, then the pressing
+question for the theory is likely where the weights come from at all: the
+question Parts V and VI take up.
+
+Given these three elements, the model computes net legal force through
+Simple Additive Weighting: $F = \sum_{i=1}^{n} w_i \cdot a_i$. A case is
+\textit{determinate} when the principles, taken together, favor one
+side, that is, when the balance is not in equipoise. To that one may add a
+\textit{determinacy threshold} $\tau$, counting a case as determinate only
+when $|F|$ exceeds $\tau$ and as a genuine legal gap when $|F| \leq \tau$.
+But as the last Section of this Part explains and Part VIII confirms, that
+threshold is a modeling choice rather than a commitment of the theory, and the faithful
+baseline is simply the sign of net force ($\tau = 0$).\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 316--18, 328--31. Simple Additive Weighting is a standard technique in
+multi-criteria decision analysis. See Ralph L.\ Keeney \& Howard Raiffa,
+\textsc{Decisions with Multiple Objectives: Preferences and Value
+Tradeoffs} 75--98 (1976).}
+
+\subsection{A Worked Example: \textit{TVA v.\ Hill}}
+
+To see how the model operates on a real dispute, consider \textit{TVA v.\
+Hill}.\footnote{437 U.S.\ 153 (1978).} There the Supreme Court divided
+six-to-three over whether the Endangered Species Act required halting
+construction of the nearly completed Tellico Dam to protect the snail
+darter. Berman discusses this case extensively as a paradigm of principled
+disagreement,\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at
+338--42.} and it repays careful analysis, since it illustrates every component
+of the model in action, perhaps better than any other case.
+
+Section 7 of the ESA directs all federal agencies to ``insure that actions
+authorized, funded, or carried out by them do not jeopardize the continued
+existence'' of endangered species.\footnote{16 U.S.C.\ \S~1536 (1976 ed.);
+\textit{quoted in} 437 U.S.\ at 173.} Chief Justice Burger's majority held
+that it flatly prohibited completing the dam. Justice
+Powell dissented, arguing that the statute was not so clear as applied to
+a project substantially complete when the species was listed.
+
+On Berman's reading, Burger and Powell agree about \textit{which}
+principles matter and differ only slightly about \textit{how important}
+they are. Both
+recognize that textual plain meaning, congressional intent, and avoiding
+absurd results bear on the question, and neither contests their relative
+ranking. The disagreement is about activation: how strongly each
+principle applies to \textit{this particular case}.
+
+Burger reads the statutory text as maximally plain. ``One would be hard
+pressed,'' he writes, ``to find a statutory provision whose terms were any
+plainer than those in \S~7.''\footnote{437 U.S.\ at 173.} Finding congressional intent unqualified, he treats the costly result as
+Congress's considered policy choice rather than an absurdity. Powell
+reads the same materials very differently. He describes the critical
+statutory term ``actions'' as ``a textbook example of fuzzy
+language.''\footnote{\textit{Id.}\ at 202 (Powell, J., dissenting).} He
+finds legislative intent silent on nearly completed projects. And he
+regards halting the dam as manifestly absurd.
+
+Table~\ref{tab:tvah} formalizes this disagreement, holding the weights fixed
+and varying only the activations. A positive activation favors prohibition,
+a negative one favors completion.
+
+\begin{table}[ht]
+\centering
+\caption{Activation Disagreement in \textit{TVA v.\ Hill}}
+\label{tab:tvah}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Principle} & \textbf{Weight} & \textbf{Burger} & \textbf{Powell} \\
+\midrule
+Textual plain meaning & 0.85 & $+0.9$ & $+0.3$ \\
+Congressional intent & 0.70 & $+0.8$ & $0.0$ \\
+Avoid absurdity & 0.60 & $-0.2$ & $-0.9$ \\
+\midrule
+\textbf{Net Force} & & $\mathbf{+1.205}$ & $\mathbf{-0.285}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Burger's analysis yields strong positive net force ($+1.205$): the law,
+on his reading, clearly favors prohibition. His textual figure alone
+contributes $0.85 \times 0.9$, or $0.765$. Powell's analysis yields $-0.285$: a weak textual contribution, no intentionalist
+contribution at all, and a strong anti-absurdity force that carries the
+balance the other way. On his reading the statute does not prohibit
+completion, the conclusion he reached.\footnote{The zero for
+congressional intent is Berman's. He renders Powell's view of legislative
+intent in Figure 9 as a double-headed arrow, pointing toward prohibition
+and away from it at once, which is his diagram of the conclusion that
+``there was no actual congressional intention relevant to this dispute, no
+intention either that completion of the Tellico Dam project would be
+illegal or that it would not be.'' Berman, \textit{Practices},
+\textit{supra} note 7, at 340; \textit{see id.}\ at 342 figs.\ 8--9. In a
+signed scalar model a principle pulling equally both ways contributes zero,
+which is the value used here. That is not the same state as a principle
+nobody has engaged, and the model cannot distinguish them: both enter the
+sum as $0$. The limitation is worth naming, since Berman's own diagram
+draws a distinction the scalar representation cannot carry.}
+
+Predominantly, though not exclusively, the disagreement is about activation.
+As noted above, Berman reads the Justices as having also
+differed slightly about the weight of the avoid-absurdity principle.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 338--42 \& figs.\ 8--9.} Even so, the case illustrates Berman's claim that activation, not weight,
+drives most judicial disagreement.
+
+The example also shows what the determinacy threshold does, and does not,
+control. Powell's near-equipoise reading sits close to zero: on the
+faithful sign-of-force baseline the negative sign of his net force favors his
+anti-prohibition conclusion, while a modest positive threshold would
+instead make his case a genuine gap. Here, then, the threshold would govern how much of the law is reported as
+determinate, an effect Part VIII examines. It leaves untouched the
+net forces themselves and the substantive properties that flow from them.
+
+\subsection{Three Claims}
+
+Berman advances three substantive claims about the model's performance.
+Each responds to a specific objection to principled positivism, and each
+makes an empirically testable prediction about how the model should
+behave.
+
+The first claim is that rough weights suffice. Stephen Perry pressed
+perhaps the most natural objection to any aggregation model: if the
+weights come from the messy, contested practice of diverse
+judges, how can they be precise enough for aggregation to produce
+determinate results?\footnote{Perry, \textit{supra} note 9, at 794.}
+Berman's response invokes what might be called the \textit{sheer numbers
+effect}: when multiple principles point in the same direction, their combined force
+should swamp small errors in individual
+weights.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 328--30.} If five principles favor an outcome and three oppose it, getting the
+weights exactly right matters less, arguably, than getting the rough
+balance right. As an empirical claim about the model's tolerance for weight uncertainty,
+this one is directly testable, and Part IV tests it by systematically
+perturbing weights and measuring how much imprecision the model can absorb.
+
+The second claim is that conflicting principles coexist stably. A Hartian
+validation rule, one that asks of each standard only whether it is valid by
+the system's criteria and which way it points, faces a problem when
+conflicting standards are both valid.\footnote{See Shapiro,
+\textsc{Legality}, \textit{supra} note 6, at 270--75.} If textualism and
+dignitarian reasoning both satisfy the rule's criteria for legal validity
+and point in opposite directions in a given case, the validation rule
+appears to generate contradictory law: the case is both legally required
+and legally prohibited.\footnote{For an influential analysis of this
+problem, see Mark Greenberg, \textit{How Facts Make Law}, 10 \textsc{Legal
+Theory} 157, 185--89 (2004).} Berman's model dissolves the problem.
+Conflicting principles do not generate contradictions; they generate
+opposing forces that sum algebraically. Both principles remain valid and operative, and simply pull in opposite
+directions. In Part~IV that contrast sharpens into an exact one. A rule
+that asks only whether each standard is valid contradicts itself on a
+genuine conflict; the weighted sum never can. As a description of how
+judges actually reason, the outweighing structure is arguably the more
+recognizable of the two. In \textit{Obergefell v.\ Hodges}, Justice Kennedy
+did not claim that originalist arguments against same-sex marriage were
+\textit{invalid}; he claimed they were \textit{outweighed}.\footnote{576
+U.S.\ 644, 666--76 (2015).} Berman's model formalizes this outweighing
+structure, and Part~IV tests it: cases with balanced conflict should still
+produce determinate outcomes at meaningful rates.
+
+The third claim is that the model delivers more law than Hart. Of the three, this one most directly addresses the Hart-Dworkin impasse. Berman
+argues that aggregation solves Dworkin's ``too little law'' problem:
+principles that individually lack consensus support can aggregate to
+determinate outcomes when their combined force is sufficient.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 316--18.} Several principles, each with partial
+support, can add up to determinate law where Hart finds only a gap. On this the prediction is straightforward. Berman's model should produce
+higher determinacy rates than a Hartian baseline.
+
+The baseline here is not the validation rule described above but a more
+charitable construction, a \textit{hierarchical Hart}. It sorts the
+principles into ranked tiers by kind, textual above structural above moral,
+and decides a case at the highest tier that contains an applicable principle,
+provided enough of that tier's principles point the same way. Where they do
+not, it leaves the case unsettled and never reaches the tiers below, and so
+gives the weighted sum something to beat. Part~IV measures how large the
+margin over it turns out to be.
+
+These three claims bear on three of the four requirements this Article tests
+the model against, and Part III states all four precisely. The
+coexistence claim bears on the first, that the weights be
+\textit{well-defined}, that is, that a plurality of principles carry
+genuine weight at all. The rough-weights claim bears on the second, that they
+be \textit{noise-tolerant}. The more-law claim bears on the fourth, that the
+model deliver \textit{more law than Hart}. The third requirement comes not
+from any of the three claims but from the theory's rejection of lexical
+priority: that the model be \textit{magnitude-weighing}, responding to how
+strongly each principle applies rather than merely to which principle ranks
+highest. Rejecting lexical priority is not by itself enough to satisfy it,
+since a rule that counts principles rejects lexical priority too and still
+reads no magnitudes. That one occupies Part VII. Two further properties that earlier work has
+associated with the theory (that principles travel in correlated groups,
+and that their weights come graded rather than equal) are worth measuring
+but are \textit{not} requirements. Berman's account, unlike Dworkin's,
+permits principles to carry equal weight.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 323--24 (the
+account does not require that principles have varied weights). Equal
+weights do not collapse the model into majority voting, a proposition Part
+IV establishes formally.}
+
+\subsection{What the Theory Leaves Open}
+
+Berman's model is precise for a philosophical theory. It specifies the
+aggregation equation, identifies the relevant parameters, and makes
+predictions about the model's performance. Of the four questions the
+Introduction left open, the first is Berman's own and he answers it: rough
+weights suffice. How rough is a quantity to be measured rather than a gap to
+be filled, and Part III accordingly states it as a requirement. Yet
+translating the model into executable code, which demands full
+specification, reveals three further places where the theory does not fully
+determine its own content. They are not equally consequential. Two of the three look open but would seem to settle largely on inspection.
+The third does not, and it is where this Article's central finding lies.
+
+\subsubsection{The Determinacy Threshold}
+
+Where does $\tau$ come from? The aggregation equation specifies how to compute
+net legal force; the determinacy condition specifies when that force is
+\textit{sufficient}, and that second specification looks as though it needs a
+threshold the theory never grounds. But Berman does not, in fact, commit
+to one. He writes that an aggregative system ``could incorporate
+thresholds or eschew them,''\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 331.} and in correspondence he
+has confirmed that he claims no more than that some threshold is
+\textit{possible}, not that any is \textit{required}.\footnote{E-mail from
+Mitchell N.\ Berman to author (Mar.\ 2026) (on file with author). Berman
+observes that, even with no threshold, not every dispute would have a
+determinate answer, since the contours and weights of some principles, and
+their context-specific activation, may themselves be indeterminate, but
+that where the principles and their activation \textit{are} determinate,
+there is law ``whenever the balance of principles is not precisely in
+equipoise,'' with some actions ``barely legal'' or ``barely illegal.''}
+The faithful baseline, then, is the bare \textit{sign} of net force: there
+is law wherever the balance favors one side. A nonzero threshold is not a commitment of the theory but a
+\textit{modeling choice}. On the evidence of Part VIII, it governs how much
+of the law comes out determinate without disturbing the model's substantive
+properties.
+
+\subsubsection{The Aggregation Function}
+
+Berman's model sums weighted activations. Is that the right functional
+form? Because the theory already takes a side on the only distinction that
+matters here, the question has a narrower compass than it first appears.
+Berman's principles combine by \textit{weight and magnitude}: a strongly
+activated principle can be outweighed by several weaker ones pulling the
+other way. They do not combine by \textit{fixed priority}, under which a
+higher-ranked principle would prevail over any lower-ranked one regardless
+of magnitude. The first mode is \textit{nonlexical}; the second is
+\textit{lexical}, and Berman is explicit that his account rejects
+it.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at
+311--13, 333 (distinguishing genuine weighing from
+lexical priority and placing principled positivism on the weighing side of
+that line). Lexical priority is associated with Joseph Raz's
+exclusionary-reasons view. See Joseph Raz, \textsc{Practical Reason and
+Norms} 35--48 (2d ed.\ 1999).} Lexicographic and cascade orderings let the
+highest-ranked applicable principle decide and consult nothing below it. On
+that account they are not rival readings of principled positivism at all.
+They are the foil it is defined against, useful here only as a contrast.
+
+Ruling out lexical priority still leaves a choice, because the nonlexical
+rules divide again. Some read how strongly each principle applies; others
+read only which way each one points and count. The live question is
+therefore twofold. Within the rules that read strength, does anything turn
+on the particular form, simple addition against, say, a combination in
+which a principle's contribution grows faster than linearly? Part VII finds
+that nothing does. Across the line separating those rules from the ones
+that merely count, a great deal turns on the choice: the rules that read
+strength and the rules that only count reach different verdicts on about one
+case in seven. So what does the work is not
+nonlexicality, which the counting rules share, but the reading of
+magnitude, which they do not.\footnote{Berman draws the additive form
+from multi-criteria decision analysis, where simple additive weighting is
+the default. Berman, \textit{Practices}, \textit{supra} note 7, at 330; see
+Keeney \& Raiffa, \textit{supra} note 32, at 75--98.}
+
+\subsubsection{The Grounding of the Weights}
+
+This is the deep gap, and it is the question the computational analysis is
+built around. Berman says the weights are grounded in practice: the more centrally a
+principle figures in legal reasoning, the higher its weight. This Article
+compresses that phrase to \textit{practice-grounded}, a term that is its own
+and not Berman's.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 329.} But \textit{how} does a pattern of practice fix
+a number between zero and one? Here a distinction Berman has drawn is
+essential. The grounding \textit{relation}, the source of a principle's
+weight, is the taking-up and embedding of the principle by legal officials.\footnote{Berman, \textit{Practices}, \textit{supra} note 7, at 329--30; see also
+id.\ at 321--22. Berman has emphasized, in
+correspondence and in his book in progress, that a principle is also
+embedded by the holdings that continue to rely on it, so that its vitality
+does not depend on current invocation alone, and that a principle may be
+\textit{disavowed}, which is distinct from its merely falling into
+desuetude. See Berman, \textsc{To Say What the Law Is}, \textit{supra}
+note 7 (manuscript ch.\ 6).} That much is the theory's answer, gestural though it is. The theory does
+\textit{not} address a distinct, prior question: what \textit{drives changes} in those takings-up over time, the
+\textit{dynamics of changing grounds}.
+
+It is those dynamics this Article models, and it models not one but four.
+A principle's weight may shift with the sheer \textit{uptake} of the
+principle in judicial reasoning; with its \textit{embedding} in holdings
+still relied upon; with the \textit{strategic adaptation} of judges who
+learn which arguments move their colleagues; and with the near-random
+\textit{exogenous shock} of judicial appointment, as new judges arrive
+with their own views of which principles matter and how
+much.\footnote{The appointment dynamic responds to Berman's suggestion,
+in correspondence, that cultural uptake and strategic adaptation are not
+the only dynamics at work and that appointment is a third. Berman also
+cautions against the language of biological ``evolution'' and ``fitness''
+in this setting, since there are few hard constraints on which approaches
+survive beyond their social acceptance, a caution this Article adopts by
+speaking of the dynamics of changing grounds rather than of selection for
+fitness.} Part III implements the four as the uptake, reliance, strategic, and
+appointment mechanisms, in that order, so the embedding dynamic appears there
+and thereafter under the name reliance, and the shock of appointment simply as
+appointment. These four dynamics are not equally distinct. The weight structure
+appointment produces tracks embedding's so closely that the two are in
+effect one. Appointment is also the weakest of the four, clearing the
+noise-tolerance requirement only marginally. On the evidence of Part VI,
+then, the four dynamics realize three distinct weight structures rather than
+four. Whether even those three weight structures
+ground the weights in the same way, the theory does not say, and that is
+the question the rest of the Article addresses.
+
+\subsubsection{Why the Grounding Question Is the One That Matters}
+
+One might expect these gaps to compound, so that a theory underdetermined
+on its threshold, its functional form, \textit{and} its grounding could
+not deliver determinate law at all. The computational results point the
+other way. The threshold governs only how much of the law is reported as
+determinate, not whether the model's substantive properties hold. The functional form does not matter among the rules that read magnitude, the
+family the theory endorses; what matters is whether a rule reads magnitude at
+all. And the formal apparatus, given practice-grounded weights, does
+everything Berman asks of it. The slack that does matter lies in the
+grounding. Because the dynamics confer different weights, they divide
+the cases differently.\footnote{Part VI reports how often, and on which
+kinds of cases.} For that reason the choice among them is not a modeling convenience but a
+determinant of legal content. In just that sense principled positivism is
+underspecified. Not in its formal structure, which works, but in its
+dynamics of changing grounds, from which the structure borrows its content
+and which the theory has yet to supply. Establishing that requires a
+framework first: an implementation of the aggregation, four implementations
+of the practice that might ground it, and the requirements both are
+measured against. Part III builds it. Parts V and VI then make the point
+concrete.

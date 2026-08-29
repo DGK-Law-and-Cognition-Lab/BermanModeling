@@ -2,4 +2,7 @@ numpy>=1.24
 scipy>=1.10
 pandas>=1.5
 matplotlib>=3.7
+scikit-learn>=1.3
+sympy>=1.12
+diptest>=0.5
 torch>=2.0

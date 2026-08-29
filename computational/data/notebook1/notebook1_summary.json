@@ -1,0 +1,154 @@
+{
+  "exp1": {
+    "emerged": true,
+    "membership_stable": true,
+    "membership_same_across_rules": true,
+    "always_live": [
+      "text",
+      "original",
+      "precedent",
+      "structure",
+      "federalism"
+    ],
+    "always_dead": [
+      "dignity",
+      "equality",
+      "liberty",
+      "welfare"
+    ],
+    "mean_cluster_gap": 0.5120638231278163,
+    "gap_by_regime": {
+      "appointment": 0.47193280457973896,
+      "fitness": 0.6633832045323679,
+      "noise": 0.4521992702099925,
+      "static": 0.46074001318916574
+    },
+    "per_seed_bimodal_of_120": 3,
+    "pooled_gmm_dbic": 664.1441318064775,
+    "pooled_gmm_bimodal": true,
+    "pooled_bc": 0.6570587693560486,
+    "p_static_vs_appointment": 0.0426517054438591,
+    "p_static_vs_noise": 0.17719271034002304,
+    "p_static_vs_fitness": 1.862645149230957e-09
+  },
+  "exp2": {
+    "gap_by_spread": {
+      "medium": 0.2571192035821737,
+      "narrow": 0.13526265838588417,
+      "wide": 0.36068255387727094
+    },
+    "nlive_by_threshold": {
+      "25": 7.0,
+      "33": 6.0,
+      "50": 5.0,
+      "67": 3.0
+    },
+    "rawgap_by_threshold": {
+      "25": 0.46261411250013895,
+      "33": 0.44508135509719143,
+      "50": 0.4590052459974648,
+      "67": 0.4395711071295511
+    },
+    "gap_by_cadence": {
+      "250": 0.3719574901299155,
+      "500": 0.37145421629914444,
+      "1000": 0.3658766016937212
+    },
+    "composition": {
+      "equal": {
+        "raw_gap": 0.46098639874814223,
+        "live_sets": {
+          "text|original|precedent|structure|federalism": 30
+        }
+      },
+      "textualist_heavy": {
+        "raw_gap": 0.5851799906708135,
+        "live_sets": {
+          "text|original|precedent|structure|federalism": 30
+        }
+      },
+      "purposivist_heavy": {
+        "raw_gap": 0.4437078412274541,
+        "live_sets": {
+          "precedent|structure|dignity|equality|liberty": 30
+        }
+      }
+    }
+  },
+  "exp3": {
+    "appointment": {
+      "R1": 1.0,
+      "R2": 1.0,
+      "R3": 1.0,
+      "R4": 1.0,
+      "mean_sigma": 0.09677945424184756,
+      "mean_margin": 0.27091666666666664,
+      "mean_cv": 0.9027940623520724
+    },
+    "fitness": {
+      "R1": 1.0,
+      "R2": 1.0,
+      "R3": 1.0,
+      "R4": 1.0,
+      "mean_sigma": 0.09154797852402709,
+      "mean_margin": 0.2673333333333333,
+      "mean_cv": 0.906139348553724
+    },
+    "noise": {
+      "R1": 1.0,
+      "R2": 1.0,
+      "R3": 1.0,
+      "R4": 1.0,
+      "mean_sigma": 0.09514100889136086,
+      "mean_margin": 0.26929166666666665,
+      "mean_cv": 0.9039977441445608
+    },
+    "static": {
+      "R1": 1.0,
+      "R2": 1.0,
+      "R3": 1.0,
+      "R4": 1.0,
+      "mean_sigma": 0.09608912775165095,
+      "mean_margin": 0.2708333333333333,
+      "mean_cv": 0.9032199710381612
+    }
+  },
+  "exp4": {
+    "mean_r": 0.9704538804706806,
+    "mean_rmse": 0.4217460026904984,
+    "mean_verdict_agree": 0.8592000000000001
+  },
+  "exp5": {
+    "within_textual": 0.7977406567473712,
+    "within_structural": 0.6351316672789433,
+    "within_moral": 0.550690199641741,
+    "across_textual_moral": 0.2122689586467626,
+    "across_textual_structural": 0.6637817766978046,
+    "across_structural_moral": 0.37803274239680534,
+    "within_mean": 0.6611875078893518,
+    "across_mean": 0.41802782591379084,
+    "within_across_ratio": 1.5816830050583937
+  },
+  "exp6_diptest": {
+    "per_run_reject_of_total": [
+      66,
+      120
+    ],
+    "per_run_reject_static": [
+      11,
+      30
+    ],
+    "per_run_p_median": 0.046906531148375175,
+    "pooled_all": {
+      "n": 1080,
+      "dip": 0.07351861062801625,
+      "p": 0.0
+    },
+    "pooled_static": {
+      "n": 270,
+      "dip": 0.12822490466798803,
+      "p": 0.0
+    },
+    "gmm_per_run_reject": 3
+  }
+}

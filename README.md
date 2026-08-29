@@ -1,194 +1,172 @@
-# Computational Jurisprudence: Testing Berman's Principled Positivism
+# More Determinate and Less Settled
 
-**David G. Kamper**  
-University of California, Los Angeles  
-[davidgkamper@ucla.edu](mailto:davidgkamper@ucla.edu)
+**David G. Kamper**
+University of California, Los Angeles
+University of Chicago Law School
 
-This repository contains the complete code, data, and figures for "Computational Jurisprudence: Testing Berman's Principled Positivism Through Agent-Based Modeling" (2026).
+Code, data, figures, and manuscript source for a law review article giving Mitchell
+Berman's principled positivism its first systematic computational test.
 
 ---
 
-## Overview
+## The argument
 
-Mitchell Berman's principled positivism proposes that legal principles aggregate through Simple Additive Weighting (SAW), with each principle contributing force proportional to its weight and activation. This project subjects that theory to the first systematic computational analysis, proceeding in three stages:
+Berman's principled positivism holds that legal content is fixed by a weighted balance
+of legal principles, each contributing force in proportion to its weight and to how
+strongly the facts of a case activate it. Formally, `F = Σ wᵢ · aᵢ`.
 
-1. **Static Properties** (Notebook 0): Tests the SAW formula with stipulated parameters across thousands of synthetic cases. The model tolerates ±0.165 weight uncertainty, produces 76.8% determinacy in balanced-conflict cases, and delivers 19–87 percentage points more determinacy than Hart's consensus-based alternative.
+The Article reaches two findings.
 
-2. **Emergent Parameters** (Notebook 1): An agent-based model simulates 100 judges with four interpretive methodologies deciding cases over time. Bimodal weight differentiation emerges under Berman fitness (dip test rejects unimodality in 20/20 seeds, *p* < 0.05), and emergent behavior conforms to SAW almost perfectly (*r* = 0.9994).
+**The formal apparatus is sound.** Given faithful weights, the weighted sum returns a
+single determinate verdict in exactly the cases where a Hartian validation rule
+contradicts itself. It tolerates rough weights, weighs magnitude rather than ranking by
+fixed priority, and leaves less law unsettled than a tiered Hartian hierarchy. Several
+of these properties hold as theorems rather than as artifacts of a run.
 
-3. **Mechanism Dependence** (Notebook 2): Different practice mechanisms produce incompatible weight structures. Evolutionary selection achieves differentiation but not gradation; strategic optimization (MARL) achieves gradation but not differentiation. No single mechanism satisfies all five theoretical criteria simultaneously.
+**That soundness rests on an appeal to practice the theory leaves underspecified.** Four
+mechanisms by which practice might confer weight all clear every requirement the theory
+imposes, yet they ground the principles into three distinct weight structures, and those
+structures decide about a third of cases differently.
 
-## Repository Structure
+Principled positivism therefore does not resolve the indeterminacy it inherited. It
+relocates it, from how principles combine, which it handles well, to which practice
+grounds the weights, and to the prior question of how legal grounds themselves change.
 
-```
-BermanModeling/
-├── BermanNotebook0_Static_Properties.ipynb    # Stage 1: Formal properties
-├── BermanNotebook1_ABM_Emergence.ipynb        # Stage 2: ABM emergence
-├── BermanNotebook2_Mechanism_Dependence.ipynb  # Stage 3: Mechanism comparison
-├── BermanPublicationFigures.ipynb             # Generates all publication figures
-├── data/
-│   ├── notebook0/          # 20 CSVs + 1 JSON from Notebook 0
-│   ├── notebook1/          # 7 CSVs + 1 JSON from Notebook 1
-│   └── notebook2/          # 9 CSVs + 1 JSON from Notebook 2
-├── figures/                # 8 main + 3 supplementary figures (PDF + PNG)
-├── README.md
-├── LICENSE
-└── requirements.txt
-```
+---
 
-## Notebooks
+## The four requirements
 
-| Notebook | Experiments | Runtime | Hardware |
-|----------|-------------|---------|----------|
-| **Notebook 0**: Static Properties | 9 experiments + 4 supplements | ~20 min | CPU |
-| **Notebook 1**: ABM Emergence | 5 experiments | ~45 min | CPU (High-RAM) |
-| **Notebook 2**: Mechanism Dependence | 4 experiments | ~90 min | T4 GPU |
-| **Publication Figures** | Reads all exported CSVs | ~5 min | CPU |
+Every mechanism and every aggregation rule is scored against the same four requirements,
+each drawn from something Berman claims or commits to.
 
-All notebooks are designed to run in [Google Colab](https://colab.research.google.com/). Upload to Colab and run all cells sequentially.
+| Requirement | Operational test |
+| --- | --- |
+| Well-defined | At least two principles carry weight above a small cutoff |
+| Noise-tolerant | Critical uncertainty σ\* ≥ 0.07 |
+| Magnitude-weighing | On the magnitude probe, the weighted sum changes its verdict more than five times as often as a lexicographic rule |
+| More law than Hart | A positive determinacy advantage over the hierarchical Hart baseline |
 
-### Notebook 0: Static Properties
+Two properties earlier work associated with the theory, weight gradation and correlation
+benefit, are measured but are **not** requirements. Berman's account permits principles
+to carry equal weight.
 
-Tests Berman's three claims with stipulated parameters:
-- **Exp 1**: Weight uncertainty tolerance across 45 configurations (3 distributions × 3 principle counts × 5 thresholds)
-- **Exp 2a–c**: Activation assessment (pluralist disagreement, objectivist error, interval ranges)
-- **Exp 2b Supplement**: Methodology-specific systematic error
-- **Exp 3**: Conflict case types (aligned, opposed, balanced, random)
-- **Exp 4**: Berman vs. Hart (6 Hart variants across 30 seeds)
-- **Exp 5**: Uncertainty decomposition (epistemic vs. aleatory)
-- **Exp 6**: Threshold map (determinacy–stability trade-off)
-- **Exp 7**: Principle count and three-way consistency
-- **Exp 8**: Correlated activations (independent, category-correlated, fully correlated)
-- **Exp 9**: Cardinal vs. ordinal aggregation
+## The four mechanisms
 
-### Notebook 1: ABM Emergence
+| Mechanism | Weight is conferred by |
+| --- | --- |
+| Uptake | How often the bench invokes a principle |
+| Reliance | Embedding in the holdings that go on relying on it |
+| Strategic | Judges adapting to which arguments move their colleagues |
+| Appointment | Bench turnover, read out through surviving holding-support |
 
-Tests whether parameters can emerge from simulated practice:
-- **Exp 1**: Three-condition emergence (consensus vs. Berman fitness, ± median threshold). 20 seeds, 5000 cases each.
-- **Exp 2**: Sensitivity analyses (agent count, invocation spread, selection cutoff)
-- **Exp 3**: Emergent activation correlation structure
-- **Exp 4**: Cross-validation against five theoretical criteria (10 seeds)
-- **Exp 5**: SAW fidelity (correlation between ABM force and SAW-predicted force)
+## Three Harts, kept distinct
 
-### Notebook 2: Mechanism Dependence
+The Article runs three separate Hartian comparisons and never conflates them.
 
-Compares three practice mechanisms:
-- **Exp 1**: ABM vs. MARL vs. Hybrid side by side (10 seeds each)
-- **Exp 2**: MARL diagnostics (parsimony sweep, architecture sensitivity)
-- **Exp 3**: Cross-validation of all mechanisms against five criteria
-- **Exp 3b**: Full Berman-vs-Hart curve with emergent weights
+- **A Hartian validation rule** is the contradiction foil. It asks of each standard only
+  whether it is valid and which way it points, so on a genuine conflict it certifies both
+  sides at once.
+- **The hierarchical Hart** is the determinacy baseline. It sorts the principles into
+  ranked tiers and decides at the highest tier holding an applicable principle, and only
+  where enough of that tier's principles point the same way.
+- **A consensus Hart** is a flat share bar, deciding when a fixed share of the principles
+  agree.
 
-## Data
+---
 
-Each notebook exports its results as CSV files to the corresponding `data/notebookN/` directory. These CSVs are read by the Publication Figures notebook to generate all figures in the paper.
-
-Summary JSON files (`notebook0_summary.json`, etc.) contain top-level results for quick reference.
-
-### Key Data Files
-
-| File | Contents |
-|------|----------|
-| `notebook0/exp1_weight_uncertainty.csv` | Critical σ* across 45 configurations |
-| `notebook0/exp4_berman_vs_hart.csv` | Determinacy rates for Berman and 6 Hart variants |
-| `notebook0/exp8_correlated.csv` | Robustness under three correlation structures |
-| `notebook1/exp1_emergence.csv` | Bimodality metrics across 3 conditions × 20 seeds |
-| `notebook1/exp1_condition_c_weights.csv` | Emergent weights from Condition C (20 seeds × 9 principles) |
-| `notebook2/exp1_summary.csv` | Weight CV and survivors for ABM, MARL, Hybrid |
-| `notebook2/exp3_pass_rates.csv` | C1–C5 pass rates by mechanism |
-| `notebook2/exp3b_hart_curve.csv` | Berman advantage across Hart variants with emergent weights |
-
-## Figures
-
-All figures are at 600 DPI in both PDF (vector) and PNG (raster) formats.
-
-### Main Figures
-
-| Figure | Description | Paper Section |
-|--------|-------------|---------------|
-| `fig1_weight_uncertainty` | Weight tolerance across parameter grid; threshold dominance | Part IV |
-| `fig2_berman_vs_hart_stipulated` | Berman's advantage over Hart variants | Part IV |
-| `fig3_abm_emergence` | Bimodal differentiation under three ABM conditions | Part V |
-| `fig4_abm_crossvalidation` | Cross-validation: 3/5 criteria pass, 2/5 fail | Part V |
-| `fig5_mechanism_heatmap` | Pass rates by mechanism (complementary failure pattern) | Part VI |
-| `fig6_hart_emergent_weights` | Hart curve with emergent weights from three mechanisms | Part VI |
-| `fig7_complementarity` | Venn diagram + pass/fail table | Part VI |
-| `fig8_complete_argument` | Three-stage argument summary | Part VII |
-
-### Supplementary Figures
-
-| Figure | Description |
-|--------|-------------|
-| `figS1_correlated_activations` | Category correlation doubles robustness |
-| `figS2_methodology_error` | Homogeneous vs. mixed panel accuracy |
-| `figS3_sensitivity` | ABM sensitivity (agent count, invocation spread, selection cutoff) |
-
-## Requirements
+## Repository structure
 
 ```
-python>=3.10
-numpy>=1.24
-scipy>=1.10
-pandas>=1.5
-matplotlib>=3.7
-torch>=2.0        # Notebook 2 only
+computational/
+  berman_core.py            shared engine: principles, activations, aggregation, baselines
+  sa_toolkit.py             global sensitivity analysis helpers
+  notebooks/                0 through 9, listed below
+  data/notebook0..9/        saved outputs, CSV plus a summary JSON per notebook
+  figures/                  supplement figures
+  figures/pub/              F1 to F5 as published
+
+paper/
+  main.tex                  master file
+  sections/                 Parts I through X
+  figures/                  F1 to F5, theorems_table.tex, captions.tex
+  main.pdf                  compiled draft
+
+index.html                  public landing page, served at the Pages URL
+assets/                     figures for that page
 ```
 
-Install with:
+The project site is at **https://dgkamper.github.io/berman-modeling/**, which serves the
+paper, the notebooks, and the data whether or not the repository itself is public.
+
+### Notebooks
+
+Run in dependency order. Notebooks 0 and 7 establish the static results; 1, 2, 3 and 9
+are the four mechanisms; 4, 5 and 6 are the robustness Parts; 8 rebuilds every figure.
+
+| Notebook | What it establishes | Part |
+| --- | --- | --- |
+| `0_static_properties` | Static model: determinacy, noise tolerance, the Hart comparisons, the magnitude probe | IV |
+| `1_abm_emergence` | Uptake: weights emerging from a simulated bench, the live/dead cut, the cluster gap | V |
+| `2_reliance_mechanism` | Reliance: weight from embedding in holdings | VI |
+| `3_strategic_mechanism` | Strategic adaptation, trained by REINFORCE | VI |
+| `4_threshold` | The determinacy threshold swept from 0 to 0.30 | VIII |
+| `5_aggregation_functions` | Ten aggregation rules across cardinal, ordinal, and lexical classes | VII |
+| `6_global_sensitivity` | Sobol variance decomposition over four inputs | VIII |
+| `7_analytical_results` | The five theorems and the scope each is proved under | IV.D |
+| `8_figures` | Rebuilds F1 to F5, the theorems table, and every caption | all |
+| `9_appointment_embedding` | Appointment, and the decoupling test against reliance | VI |
+
+Notebooks were developed and verified in Google Colab. `berman_core.py` is duplicated
+inside `notebooks/` so a Colab session can import it without a path fixup; the two copies
+are byte-identical.
+
+### Reproducing
+
 ```bash
 pip install -r requirements.txt
+jupyter lab computational/notebooks
 ```
 
-Or simply run in Google Colab, which has all dependencies pre-installed.
+Each notebook writes to `data/notebookN/` and carries its own self-checks. Run 0 and 7
+before 8, which reads their summary JSON.
 
-## Replication
+---
 
-To reproduce all results from scratch:
+## Headline figures
 
-1. Open each notebook in Google Colab
-2. Run all cells sequentially
-3. Notebooks export CSVs to their respective `data/` directories
-4. Open `BermanPublicationFigures.ipynb` and run all cells to regenerate figures
+All numbers are computed on synthetic cases with independent activations, the
+conservative baseline. Correlation only improves the model's performance, so every figure
+below should be read as a floor. The one exception is the margin over Hart, which
+reverses under category-correlated activations and is reported as such in Part IV.
 
-All random seeds are fixed and reported. Results are deterministic given the same seed.
+- Determinacy 86.2% in general, 79.2% on conflict cases.
+- A validation rule contradicts itself on 100% of directly opposed cases; the weighted
+  sum on 0%.
+- Critical uncertainty mean 0.090, rising from 0.069 to 0.156 under category correlation.
+- Margin over the hierarchical Hart +0.272, positive on every seed.
+- The weighted sum responds to a magnitude-only perturbation about 9.7 times as often as
+  a lexical rule.
+- With equal weights the sum and a vote-count disagree on 15.4% of cases, reproduced at
+  15.3% on a separate implementation.
+- Four mechanisms, three structures: reliance and appointment correlate at +0.93, while
+  uptake opposes both. The four reach different verdicts on 36.1% of cases and opposite
+  determinate verdicts on 27.2%.
 
-To reproduce using pre-computed data (without re-running experiments):
+---
 
-1. Open `BermanPublicationFigures.ipynb`
-2. Point the data paths to the `data/` directories in this repository
-3. Run all cells to regenerate figures from the exported CSVs
+## Status
 
-## Key Results
+The manuscript is a working draft of August 2026. Two citations are pending permission
+from Professor Berman: his book in progress, *To Say What the Law Is*, which is marked
+"Do Not Quote or Cite Without Permission," and correspondence of March 2026. Neither
+should be quoted onward.
 
-| Finding | Value | Source |
-|---------|-------|--------|
-| Mean weight tolerance (σ*) | ±0.165 | Notebook 0, Exp 1 |
-| Berman vs. hierarchical Hart | +19.1% | Notebook 0, Exp 4 |
-| Berman vs. consensus Hart (50%) | +33.1% | Notebook 0, Exp 4 |
-| Balanced-conflict determinacy | 76.8% | Notebook 0, Exp 3 |
-| Cardinal vs. ordinal advantage | 3.3× | Notebook 0, Exp 9 |
-| Correlated activation improvement | 2.0× | Notebook 0, Exp 8 |
-| Dip test (Berman fitness) | 20/20 reject | Notebook 1, Exp 1 |
-| SAW fidelity | *r* = 0.9994 | Notebook 1, Exp 5 |
-| ABM weight CV | 0.895 | Notebook 2, Exp 1 |
-| MARL weight CV | 0.344 | Notebook 2, Exp 1 |
-| C2 pass rate (all mechanisms) | 0% | Notebook 2, Exp 3 |
-
-## Citation
-
-```bibtex
-@article{kamper2026computational,
-  author  = {Kamper, David G.},
-  title   = {Computational Jurisprudence: Testing Berman's Principled
-             Positivism Through Agent-Based Modeling},
-  year    = {2026},
-  note    = {Manuscript}
-}
-```
-
-## Acknowledgments
-
-I am grateful to Mitchell Berman for extensive discussions of his theory and direct feedback on the computational framework, and to Amin Ebrahimi Afrouzi for insights on constitutional precedent analysis.
+Parts VIII and IX of earlier drafts framed the argument as an impossibility result
+against five criteria. That framing is retired: it tested a target stronger than Berman
+commits to. The retired sections are excluded from the build and from this
+repository.
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
+MIT, see `LICENSE`. The manuscript text is not covered by that license and remains the
+author's.

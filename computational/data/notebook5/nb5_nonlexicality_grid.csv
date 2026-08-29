@@ -1,0 +1,91 @@
+weights,activations,function,family,nonlexicality,sd
+equal,independent,SAW (tau=0.2),cardinal,0.051235763888888876,0.0019839844201014404
+equal,independent,SAW-sign,cardinal,0.025670486111111113,0.001446545822219027
+equal,independent,SAW-L1,cardinal,0.025670486111111113,0.001446545822219027
+equal,independent,Nonlinear,cardinal,0.07479583333333333,0.0025577680451294217
+equal,independent,vote-count,ordinal,0.0,0.0
+equal,independent,weighted-vote,ordinal,0.0,0.0
+equal,independent,Borda,ordinal,0.0,0.0
+equal,independent,median-sign,ordinal,0.0,0.0
+equal,independent,lexicographic,lexical(FOIL),0.002680555555555556,0.00047437468993467315
+equal,independent,cascade,lexical(FOIL),0.0,0.0
+equal,category,SAW (tau=0.2),cardinal,0.028817361111111113,0.0018950733621259908
+equal,category,SAW-sign,cardinal,0.014824305555555554,0.001157393495286758
+equal,category,SAW-L1,cardinal,0.014824305555555554,0.001157393495286758
+equal,category,Nonlinear,cardinal,0.02976493055555556,0.0015568548099012486
+equal,category,vote-count,ordinal,0.0,0.0
+equal,category,weighted-vote,ordinal,0.0,0.0
+equal,category,Borda,ordinal,0.0,0.0
+equal,category,median-sign,ordinal,0.0,0.0
+equal,category,lexicographic,lexical(FOIL),0.0033531249999999998,0.0006748271705180849
+equal,category,cascade,lexical(FOIL),0.0,0.0
+equal,fully,SAW (tau=0.2),cardinal,0.006313888888888889,0.0009461053104637213
+equal,fully,SAW-sign,cardinal,0.0029732638888888894,0.00034917523662469766
+equal,fully,SAW-L1,cardinal,0.0029732638888888894,0.00034917523662469766
+equal,fully,Nonlinear,cardinal,0.004217361111111111,0.0007073918034443479
+equal,fully,vote-count,ordinal,0.0,0.0
+equal,fully,weighted-vote,ordinal,0.0,0.0
+equal,fully,Borda,ordinal,0.0,0.0
+equal,fully,median-sign,ordinal,0.0,0.0
+equal,fully,lexicographic,lexical(FOIL),0.0034510416666666674,0.0006988186025257992
+equal,fully,cascade,lexical(FOIL),0.0,0.0
+moderate,independent,SAW (tau=0.2),cardinal,0.05123159722222223,0.0020820424530800206
+moderate,independent,SAW-sign,cardinal,0.025780902777777778,0.0013682110476355299
+moderate,independent,SAW-L1,cardinal,0.025780902777777778,0.0013682110476355299
+moderate,independent,Nonlinear,cardinal,0.07395416666666668,0.0029449749751341964
+moderate,independent,vote-count,ordinal,0.0,0.0
+moderate,independent,weighted-vote,ordinal,0.0,0.0
+moderate,independent,Borda,ordinal,0.0,0.0
+moderate,independent,median-sign,ordinal,0.0,0.0
+moderate,independent,lexicographic,lexical(FOIL),0.002647569444444444,0.0004696910564025104
+moderate,independent,cascade,lexical(FOIL),0.0,0.0
+moderate,category,SAW (tau=0.2),cardinal,0.029377083333333335,0.0022076672868747765
+moderate,category,SAW-sign,cardinal,0.01464548611111111,0.0012403052383578163
+moderate,category,SAW-L1,cardinal,0.01464548611111111,0.0012403052383578163
+moderate,category,Nonlinear,cardinal,0.02980555555555555,0.0017710627574693849
+moderate,category,vote-count,ordinal,0.0,0.0
+moderate,category,weighted-vote,ordinal,0.0,0.0
+moderate,category,Borda,ordinal,0.0,0.0
+moderate,category,median-sign,ordinal,0.0,0.0
+moderate,category,lexicographic,lexical(FOIL),0.0036,0.0005993679155144593
+moderate,category,cascade,lexical(FOIL),0.0,0.0
+moderate,fully,SAW (tau=0.2),cardinal,0.00623576388888889,0.0009834513352181102
+moderate,fully,SAW-sign,cardinal,0.003044097222222222,0.0004997372235797258
+moderate,fully,SAW-L1,cardinal,0.003044097222222222,0.0004997372235797258
+moderate,fully,Nonlinear,cardinal,0.004284027777777778,0.0006469352904748113
+moderate,fully,vote-count,ordinal,0.0,0.0
+moderate,fully,weighted-vote,ordinal,0.0,0.0
+moderate,fully,Borda,ordinal,0.0,0.0
+moderate,fully,median-sign,ordinal,0.0,0.0
+moderate,fully,lexicographic,lexical(FOIL),0.0033496527777777774,0.0007497042401665908
+moderate,fully,cascade,lexical(FOIL),0.0,0.0
+high,independent,SAW (tau=0.2),cardinal,0.050157638888888884,0.0026196591021979175
+high,independent,SAW-sign,cardinal,0.025947916666666664,0.0017406600127803803
+high,independent,SAW-L1,cardinal,0.025947916666666664,0.0017406600127803803
+high,independent,Nonlinear,cardinal,0.07191840277777778,0.002992900167563485
+high,independent,vote-count,ordinal,0.0,0.0
+high,independent,weighted-vote,ordinal,0.0,0.0
+high,independent,Borda,ordinal,0.0,0.0
+high,independent,median-sign,ordinal,0.0,0.0
+high,independent,lexicographic,lexical(FOIL),0.002647569444444444,0.0004696910564025104
+high,independent,cascade,lexical(FOIL),0.0,0.0
+high,category,SAW (tau=0.2),cardinal,0.029897569444444442,0.0029468393243065223
+high,category,SAW-sign,cardinal,0.01458611111111111,0.0017832954738106583
+high,category,SAW-L1,cardinal,0.01458611111111111,0.0017832954738106583
+high,category,Nonlinear,cardinal,0.02972534722222222,0.0017839819922436694
+high,category,vote-count,ordinal,0.0,0.0
+high,category,weighted-vote,ordinal,0.0,0.0
+high,category,Borda,ordinal,0.0,0.0
+high,category,median-sign,ordinal,0.0,0.0
+high,category,lexicographic,lexical(FOIL),0.0036,0.0005993679155144593
+high,category,cascade,lexical(FOIL),0.0,0.0
+high,fully,SAW (tau=0.2),cardinal,0.006291319444444444,0.0009441564741735161
+high,fully,SAW-sign,cardinal,0.0032538194444444446,0.0005533102413535541
+high,fully,SAW-L1,cardinal,0.0032538194444444446,0.0005533102413535541
+high,fully,Nonlinear,cardinal,0.0045131944444444455,0.0007090985110000367
+high,fully,vote-count,ordinal,0.0,0.0
+high,fully,weighted-vote,ordinal,0.0,0.0
+high,fully,Borda,ordinal,0.0,0.0
+high,fully,median-sign,ordinal,0.0,0.0
+high,fully,lexicographic,lexical(FOIL),0.0033496527777777774,0.0007497042401665908
+high,fully,cascade,lexical(FOIL),0.0,0.0

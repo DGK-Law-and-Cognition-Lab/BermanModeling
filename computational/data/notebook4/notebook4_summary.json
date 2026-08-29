@@ -1,0 +1,103 @@
+{
+  "exp1": {
+    "D_at_0": 1.0,
+    "monotone_decreasing": true,
+    "closedform_maxerr": 0.010612061082149848,
+    "sigma_F": 1.141106449364151
+  },
+  "exp2": {
+    "tau_star_percase": 0.2665603468228095,
+    "tau_star_percase_sd": 0.009988099934804632,
+    "tau_cumulative_floor": 0.07500000000000001,
+    "tau_cumulative_floor_sd": 0.008465616732800196,
+    "default_below_percase": true,
+    "k_sigma": 2.665603468228095,
+    "sensitivity": [
+      {
+        "sigma_w": 0.05,
+        "q": 0.05,
+        "tau_star": 0.17036898098129422
+      },
+      {
+        "sigma_w": 0.05,
+        "q": 0.1,
+        "tau_star": 0.1365136296828902
+      },
+      {
+        "sigma_w": 0.1,
+        "q": 0.05,
+        "tau_star": 0.3365131305431335
+      },
+      {
+        "sigma_w": 0.1,
+        "q": 0.1,
+        "tau_star": 0.26691037567618214
+      },
+      {
+        "sigma_w": 0.15,
+        "q": 0.05,
+        "tau_star": 0.49527963196069363
+      },
+      {
+        "sigma_w": 0.15,
+        "q": 0.1,
+        "tau_star": 0.3922281157256855
+      }
+    ]
+  },
+  "exp3": {
+    "det_optimum_is_zero": true,
+    "D_0": 1.0,
+    "D_255": 0.831875,
+    "principled_sd": 0.009988099934804632,
+    "learned_sd": 0.0,
+    "retraction_grounds": [
+      "zero-variance herding fixed point",
+      "determinacy optimum is 0"
+    ]
+  },
+  "exp4": {
+    "R_stable": {
+      "stipulated": {
+        "R1": true,
+        "R2": false,
+        "R3": true,
+        "R4": true
+      },
+      "uptake": {
+        "R1": true,
+        "R2": true,
+        "R3": true,
+        "R4": true
+      },
+      "reliance": {
+        "R1": true,
+        "R2": true,
+        "R3": true,
+        "R4": true
+      },
+      "strategic": {
+        "R1": true,
+        "R2": true,
+        "R3": true,
+        "R4": true
+      }
+    },
+    "rank_stable": {
+      "determinacy": true,
+      "mean_sigma": false
+    },
+    "rank_orders": {
+      "determinacy": [
+        "reliance|strategic|uptake"
+      ],
+      "mean_sigma": [
+        "reliance|uptake|strategic",
+        "uptake|reliance|strategic"
+      ]
+    },
+    "det_monotone": true,
+    "emergent_all_stable": true
+  },
+  "self_check_passed": true
+}

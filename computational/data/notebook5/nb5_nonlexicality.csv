@@ -1,0 +1,11 @@
+function,family,nonlexicality
+SAW (tau=0.2),cardinal,0.04961458333333333
+SAW-sign,cardinal,0.022947916666666665
+SAW-L1,cardinal,0.022947916666666665
+Nonlinear,cardinal,0.0749375
+vote-count,ordinal,0.0
+weighted-vote,ordinal,0.0
+Borda,ordinal,0.0
+median-sign,ordinal,0.0
+lexicographic,lexical(FOIL),0.0023541666666666667
+cascade,lexical(FOIL),0.0
