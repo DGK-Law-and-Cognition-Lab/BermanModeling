@@ -84,10 +84,12 @@ li{margin-bottom:6px}
   <div class="author">David G. Kamper</div>
   <div class="affil">University of California, Los Angeles &middot; University of Chicago Law School</div>
   <div class="actions">
-    <a class="btn btn-primary" href="paper/main.pdf">Read the paper (PDF)</a>
-    <a class="btn btn-outline" href="#supplement">Notebooks and data</a>
+    <a class="btn btn-primary" href="#supplement">Notebooks and data</a>
+    <a class="btn btn-outline" href="#results">Results</a>
   </div>
-  <div class="status">Working draft, August 2026. Comments welcome at
+  <div class="status">This site hosts the replication package: the ten notebooks,
+    the shared engine, and the saved outputs behind every reported number. The
+    manuscript is under review and is available from the author at
     <a href="mailto:davidgkamper@ucla.edu">davidgkamper@ucla.edu</a>.</div>
 </header>
 
@@ -196,7 +198,7 @@ li{margin-bottom:6px}
   </ul>
 </section>
 
-<section>
+<section id="results">
   <h2>Results</h2>
   <p>Every figure below is computed on synthetic cases with independent activations, the
   conservative baseline, so each should be read as a floor. Correlation only improves the
@@ -277,8 +279,7 @@ li{margin-bottom:6px}
   </table>
   </div>
   <p>Every notebook above is downloadable from this page, as is the
-  <a href="computational/data/">saved output</a> behind each number and the
-  <a href="paper/">LaTeX source</a> of the paper. To run them:</p>
+  <a href="computational/data/">saved output</a> behind each number. To run them:</p>
   <div class="eq" style="text-align:left">pip install -r requirements.txt</div>
   <p class="note">Notebooks 0 and 7 should be run before 8, which reads their summary JSON.
   The engine is <code>computational/berman_core.py</code>; it is duplicated inside

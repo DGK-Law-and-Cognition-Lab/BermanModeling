@@ -1,0 +1,24 @@
+{
+  "title": "Computational supplement to \"More Determinate and Less Settled\": an agent-based test of Mitchell Berman's principled positivism",
+  "upload_type": "software",
+  "description": "<p>Replication package for a law review article giving Mitchell Berman's principled positivism its first systematic computational test. Berman's theory holds that legal content is fixed by a weighted balance of legal principles, each contributing force in proportion to its weight and to how strongly a case activates it.</p><p>The package contains ten Jupyter notebooks, the shared simulation engine (<code>berman_core.py</code>) and sensitivity toolkit (<code>sa_toolkit.py</code>), the saved outputs behind every number reported in the article, and the published figures. Notebooks cover the static model and its theorems, four mechanisms by which practice might confer weight (uptake, reliance, strategic adaptation, and judicial appointment), a sweep of the determinacy threshold, ten aggregation rules across cardinal, ordinal and lexical classes, and a Sobol variance decomposition.</p><p>All results are computed on synthetic cases. The manuscript is under review and is not included in this deposit.</p>",
+  "creators": [
+    {
+      "name": "Kamper, David G.",
+      "affiliation": "University of California, Los Angeles; University of Chicago Law School"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "legal philosophy",
+    "jurisprudence",
+    "legal positivism",
+    "principled positivism",
+    "agent-based modeling",
+    "computational legal theory",
+    "simulation",
+    "sensitivity analysis"
+  ],
+  "version": "1.0.0"
+}

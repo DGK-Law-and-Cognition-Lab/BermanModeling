@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: >-
+  Computational supplement to "More Determinate and Less
+  Settled": an agent-based test of Mitchell Berman's
+  principled positivism
+message: If you use this software or data, please cite it as below.
+type: software
+authors:
+  - family-names: Kamper
+    given-names: David G.
+    affiliation: University of California, Los Angeles; University of Chicago Law School
+    email: davidgkamper@ucla.edu
+abstract: >-
+  Replication package for a law review article giving Mitchell Berman's
+  principled positivism its first systematic computational test. Contains
+  ten notebooks, the shared simulation engine and sensitivity toolkit, the
+  saved outputs behind every reported number, and the published figures.
+  All results are computed on synthetic cases. The manuscript is under
+  review and is not included in this deposit.
+keywords:
+  - legal philosophy
+  - jurisprudence
+  - legal positivism
+  - agent-based modeling
+  - computational legal theory
+license: MIT
+version: 1.0.0

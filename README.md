@@ -4,8 +4,9 @@
 University of California, Los Angeles
 University of Chicago Law School
 
-Code, data, figures, and manuscript source for a law review article giving Mitchell
-Berman's principled positivism its first systematic computational test.
+Replication package for a law review article giving Mitchell Berman's principled
+positivism its first systematic computational test. The manuscript itself is under
+review and is not included here; it is available from the author.
 
 ---
 
@@ -84,12 +85,6 @@ computational/
   data/notebook0..9/        saved outputs, CSV plus a summary JSON per notebook
   figures/                  supplement figures
   figures/pub/              F1 to F5 as published
-
-paper/
-  main.tex                  master file
-  sections/                 Parts I through X
-  figures/                  F1 to F5, theorems_table.tex, captions.tex
-  main.pdf                  compiled draft
 
 index.html                  public landing page, served at the Pages URL
 assets/                     figures for that page
