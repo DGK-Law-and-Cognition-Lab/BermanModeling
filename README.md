@@ -1,5 +1,7 @@
 # More Determinate and Less Settled
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24121883.svg)](https://doi.org/10.5281/zenodo.24121883)
+
 **David G. Kamper**
 University of California, Los Angeles
 University of Chicago Law School
@@ -160,6 +162,28 @@ Parts VIII and IX of earlier drafts framed the argument as an impossibility resu
 against five criteria. That framing is retired: it tested a target stronger than Berman
 commits to. The retired sections are excluded from the build and from this
 repository.
+
+## Citation
+
+Every release is archived on Zenodo. Cite the version that produced the results
+you are reproducing:
+
+```bibtex
+@software{kamper_berman_supplement_2026,
+  author    = {Kamper, David G.},
+  title     = {Computational supplement to "More Determinate and Less Settled":
+               an agent-based test of Mitchell Berman's principled positivism},
+  year      = {2026},
+  version   = {1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24121884},
+  url       = {https://doi.org/10.5281/zenodo.24121884}
+}
+```
+
+`10.5281/zenodo.24121883` is the concept DOI and always resolves to the latest
+version. `10.5281/zenodo.24121884` pins v1.0.0, the snapshot behind the numbers
+reported in the article.
 
 ## License
 

@@ -25,3 +25,13 @@ keywords:
   - computational legal theory
 license: MIT
 version: 1.0.0
+doi: 10.5281/zenodo.24121884
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24121883
+    description: Concept DOI, resolves to the latest version
+  - type: doi
+    value: 10.5281/zenodo.24121884
+    description: Version DOI for v1.0.0
+repository-code: https://github.com/DGK-Law-and-Cognition-Lab/BermanModeling
+url: https://dgk-law-and-cognition-lab.github.io/BermanModeling/
